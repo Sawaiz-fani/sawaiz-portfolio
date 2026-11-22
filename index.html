@@ -1,0 +1,2596 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sawaiz Fani | AI Automation Architect & Founder @ Hurivez</title>
+  <meta name="description" content="Sawaiz Fani — AI Automation Architect & Founder at Hurivez. Engineering autonomous n8n workflows, AI Voice Calling Agents, and WhatsApp CRM pipelines for B2B operations." />
+  <meta name="keywords" content="AI Automation, n8n workflows, AI Voice Agent, WhatsApp CRM, Hurivez, Sawaiz Fani, B2B Automation, RAG Chatbot, GoHighLevel, Vapi" />
+  <meta name="author" content="Sawaiz Fani" />
+  <meta property="og:title" content="Sawaiz Fani | AI Automation Architect & Founder @ Hurivez" />
+  <meta property="og:description" content="Engineering autonomous AI workflows that eliminate manual busywork and scale B2B operations." />
+  <meta property="og:url" content="https://sawaiz.hurivez.tech" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sawaiz Fani | AI Automation Architect" />
+  <link rel="canonical" href="https://sawaiz.hurivez.tech" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#06080D',
+            slate900: '#0D111A',
+            blue600: '#2563EB',
+            blue500: '#3B82F6',
+            cyan400: '#38BDF8',
+            blue900: '#1E3A8A',
+            blue950: '#0F172A',
+          },
+          fontFamily: {
+            display: ['Oswald', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            script: ['Caveat', 'cursive'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --obsidian: #06080D;
+      --slate900: #0D111A;
+      --blue600: #2563EB;
+      --blue500: #3B82F6;
+      --cyan400: #38BDF8;
+      --blue900: #1E3A8A;
+      --grid-line: rgba(59, 130, 246, 0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background: var(--obsidian);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--obsidian);
+      color: #E2E8F0;
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      overflow-x: hidden;
+      /* Native smooth momentum scroll on iOS */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--obsidian); }
+    ::-webkit-scrollbar-thumb { background: var(--blue600); border-radius: 2px; }
+    html { scrollbar-width: thin; scrollbar-color: var(--blue600) var(--obsidian); }
+
+    /* ─── HERO ─── */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-watermark {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero-watermark span {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(80px, 18vw, 260px);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: rgba(37, 99, 235, 0.22);
+      white-space: nowrap;
+      user-select: none;
+      text-transform: uppercase;
+    }
+
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .hero-video-wrap video,
+    .hero-video-wrap img {
+      width: clamp(260px, 42vw, 640px);
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      mask-image:
+        radial-gradient(ellipse 55% 80% at 50% 40%, black 55%, transparent 100%),
+        linear-gradient(to top, transparent 0%, black 35%);
+      -webkit-mask-image:
+        radial-gradient(ellipse 55% 80% at 50% 40%, black 55%, transparent 100%),
+        linear-gradient(to top, transparent 0%, black 35%);
+      mask-composite: intersect;
+      -webkit-mask-composite: source-in;
+    }
+
+    /* Bottom vignette over entire hero */
+    .hero-vignette {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 45%;
+      background: linear-gradient(to top, #06080D 8%, transparent 100%);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .hero-side-vignette-left {
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 30%;
+      background: linear-gradient(to right, #06080D 0%, transparent 100%);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .hero-side-vignette-right {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 30%;
+      background: linear-gradient(to left, #06080D 0%, transparent 100%);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── GRID LINES ─── */
+    .grid-border {
+      border-color: var(--grid-line);
+    }
+
+    /* ─── PILL NAV ─── */
+    .pill-nav {
+      background: rgba(13, 17, 26, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--grid-line);
+      border-radius: 999px;
+      display: flex;
+      gap: 4px;
+      padding: 4px 6px;
+    }
+
+    .pill-nav a {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(226, 232, 240, 0.65);
+      padding: 6px 14px;
+      border-radius: 999px;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .pill-nav a:hover {
+      background: rgba(37, 99, 235, 0.25);
+      color: #fff;
+    }
+
+    /* ─── PULSING DOT ─── */
+    .pulse-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #10B981;
+      animation: pulseDot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+      50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    }
+
+    /* ─── GLASS BADGE ─── */
+    .glass-badge {
+      background: rgba(13, 17, 26, 0.72);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--grid-line);
+      border-radius: 12px;
+    }
+
+    /* ─── PROJECT CARDS ─── */
+    .project-card {
+      background: var(--slate900);
+      border: 1px solid var(--grid-line);
+      border-radius: 16px;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none !important;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(59, 130, 246, 0.6);
+      box-shadow: 0 24px 60px rgba(37, 99, 235, 0.22), 0 0 0 1px rgba(59, 130, 246, 0.35);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    /* ─── n8n WORKFLOW VISUAL CANVAS ─── */
+    .n8n-canvas {
+      background: radial-gradient(circle at 50% 50%, rgba(13, 20, 35, 0.95) 0%, rgba(6, 8, 13, 0.98) 100%);
+      border-bottom: 1px solid var(--grid-line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flow-base-path {
+      stroke: rgba(59, 130, 246, 0.22);
+      stroke-width: 2.2;
+      fill: none;
+      stroke-linecap: round;
+    }
+
+    .flow-pulse-path {
+      fill: none;
+      stroke: #38BDF8;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-dasharray: 12, 110;
+      animation: flowPulseAnim 2.6s linear infinite;
+      filter: drop-shadow(0 0 6px #38BDF8);
+    }
+
+    .flow-pulse-path-alt {
+      fill: none;
+      stroke: #60A5FA;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-dasharray: 12, 110;
+      animation: flowPulseAnim 3.2s linear infinite 0.7s;
+      filter: drop-shadow(0 0 5px #60A5FA);
+    }
+
+    @keyframes flowPulseAnim {
+      from { stroke-dashoffset: 122; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    .n8n-node-rect {
+      fill: #090E18;
+      stroke: rgba(59, 130, 246, 0.32);
+      stroke-width: 1.2;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .project-card:hover .n8n-node-rect {
+      stroke: rgba(56, 189, 248, 0.7);
+      filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.35));
+    }
+
+    .n8n-node-pulse {
+      animation: nodeBorderBlink 3.5s ease-in-out infinite;
+    }
+
+    @keyframes nodeBorderBlink {
+      0%, 100% { stroke: rgba(59, 130, 246, 0.32); }
+      50% { stroke: rgba(56, 189, 248, 0.85); filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.5)); }
+    }
+
+    /* ─── VIEW ARCHITECTURE BUTTON ─── */
+    .btn-view-arch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cyan400);
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 6px 12px;
+      border-radius: 999px;
+      transition: all 0.25s ease;
+    }
+
+    .project-card:hover .btn-view-arch {
+      background: rgba(37, 99, 235, 0.25);
+      border-color: rgba(56, 189, 248, 0.6);
+      color: #FFFFFF;
+      box-shadow: 0 0 16px rgba(37, 99, 235, 0.35);
+      transform: translateX(2px);
+    }
+
+    /* ─── CASE STUDY PHASE CARD ─── */
+    .phase-card {
+      background: rgba(13, 17, 26, 0.8);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      transition: all 0.25s ease;
+    }
+
+    .phase-card:hover {
+      border-color: rgba(59, 130, 246, 0.45);
+      background: rgba(13, 17, 26, 0.95);
+    }
+
+    /* ─── TIMELINE ─── */
+    .timeline-connector {
+      position: absolute;
+      left: 19px;
+      top: 32px;
+      bottom: -8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--blue600), rgba(37, 99, 235, 0.1));
+    }
+
+    .timeline-node {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--slate900);
+      border: 2px solid var(--blue600);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 16px rgba(37, 99, 235, 0.35);
+    }
+
+    /* ─── SKILL PILLS ─── */
+    .skill-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: rgba(226, 232, 240, 0.85);
+      transition: all 0.2s ease;
+      cursor: default;
+      white-space: nowrap;
+    }
+
+    .skill-pill:hover {
+      background: rgba(37, 99, 235, 0.22);
+      border-color: rgba(59, 130, 246, 0.5);
+      color: #fff;
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.25);
+    }
+
+    /* ─── PHILOSOPHY CARD ─── */
+    .philosophy-card {
+      background: linear-gradient(135deg, #1E3A8A 0%, #0F172A 60%, #06080D 100%);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 16px;
+    }
+
+    /* ─── CONTACT CHANNEL CARDS ─── */
+    .contact-channel-card {
+      background: var(--slate900);
+      border: 1px solid var(--grid-line);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-channel-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none !important;
+      z-index: 1;
+    }
+
+    .contact-channel-card:hover {
+      border-color: rgba(59, 130, 246, 0.6);
+      box-shadow: 0 20px 60px rgba(37, 99, 235, 0.2), 0 0 0 1px rgba(59, 130, 246, 0.3);
+      transform: translateY(-6px);
+    }
+
+    .contact-channel-card:hover::before {
+      opacity: 1;
+    }
+
+    .contact-channel-card > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-channel-card a,
+    .contact-channel-card button,
+    .contact-action-btn {
+      position: relative;
+      z-index: 20;
+      cursor: pointer !important;
+      pointer-events: auto !important;
+    }
+
+    /* ─── INFINITE MARQUEE SCROLL (DELIVERED SYSTEMS) ─── */
+    .marquee-container {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      padding: 10px 0 24px 0;
+      mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 24px;
+      width: max-content;
+    }
+
+    .marquee-group {
+      display: flex;
+      gap: 24px;
+      flex-shrink: 0;
+      animation: marqueeLoop 42s linear infinite;
+      will-change: transform;
+    }
+
+    .marquee-container:hover .marquee-group,
+    .marquee-container:focus-within .marquee-group {
+      animation-play-state: paused;
+    }
+
+    @keyframes marqueeLoop {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-100% - 24px)); }
+    }
+
+    @media (max-width: 768px) {
+      .marquee-group {
+        animation-duration: 32s;
+        gap: 16px;
+      }
+      .marquee-track {
+        gap: 16px;
+      }
+    }
+
+    /* ─── MODAL ─── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 8, 13, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-box {
+      background: #0B0F19;
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      border-radius: 20px;
+      max-width: 860px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      transform: translateY(32px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 50px rgba(37, 99, 235, 0.15);
+    }
+
+    .modal-overlay.open .modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    /* ─── PIPELINE NODES ─── */
+    .pipeline-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      row-gap: 12px;
+    }
+
+    .pipeline-node {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .pipeline-box {
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--cyan400);
+      white-space: nowrap;
+    }
+
+    .pipeline-arrow {
+      color: rgba(59, 130, 246, 0.5);
+      font-size: 16px;
+      padding: 0 6px;
+    }
+
+    /* ─── TOAST ─── */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--slate900);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cyan400);
+      z-index: 2000;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── CTA BUTTON ─── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue600);
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 13px 26px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: #3B82F6;
+      box-shadow: 0 0 24px rgba(37, 99, 235, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.65;
+      cursor: not-allowed !important;
+      transform: none !important;
+      box-shadow: none !important;
+      filter: grayscale(20%);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--blue500);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      border-radius: 10px;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(37, 99, 235, 0.12);
+      border-color: var(--blue500);
+      box-shadow: 0 0 16px rgba(37, 99, 235, 0.2);
+    }
+
+    /* ─── SECTION LABEL ─── */
+    .section-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue500);
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── CAROUSEL ─── */
+    .cards-row {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .cards-row::-webkit-scrollbar { display: none; }
+    .cards-row .project-card { scroll-snap-align: start; }
+
+    /* ─── FORM ─── */
+    .form-input {
+      width: 100%;
+      background: rgba(6, 8, 13, 0.6);
+      border: 1px solid var(--grid-line);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: #E2E8F0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-input:focus {
+      border-color: rgba(59, 130, 246, 0.6);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .form-input::placeholder { color: rgba(226, 232, 240, 0.3); }
+
+    textarea.form-input { resize: vertical; min-height: 100px; }
+
+    /* ─── SECTION DIVIDER ─── */
+    .h-divider {
+      height: 1px;
+      background: var(--grid-line);
+    }
+
+    /* ─── MICRO HEADER ─── */
+    .micro-header {
+      border-bottom: 1px solid var(--grid-line);
+    }
+
+    /* ─── STAT COUNTER ─── */
+    .stat-value {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      color: var(--blue500);
+      line-height: 1;
+    }
+
+    /* ─── EDUCATION TIMELINE ─── */
+    .edu-item {
+      border-left: 2px solid rgba(59, 130, 246, 0.3);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .edu-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--blue600);
+      box-shadow: 0 0 10px rgba(37, 99, 235, 0.6);
+    }
+
+    /* ─── CONTACT ROW ─── */
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border: 1px solid var(--grid-line);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .contact-row:hover {
+      background: rgba(37, 99, 235, 0.08);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    /* ─── FOOTER ─── */
+    .footer-section {
+      border-top: 1px solid var(--grid-line);
+    }
+
+    /* ─── GLOW LINE ─── */
+    .glow-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue600), transparent);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      .hero-watermark span { font-size: clamp(50px, 18vw, 100px); }
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION LAYOUT — full viewport height per section
+    ══════════════════════════════════════════ */
+
+    /* Every main section fills at least the full viewport */
+    .page-section {
+      min-height: 100vh;
+      position: relative;
+      /* GPU layer acceleration for butter-smooth focus transitions */
+      transform: translateZ(0);
+      will-change: opacity, filter, transform;
+      transition: all 0.6s ease-out;
+    }
+
+    /* Outgoing/adjacent sections at top/bottom edges: subtle blur & slight fade */
+    .page-section.section-blur {
+      opacity: 0.45;
+      filter: blur(4px);
+      transform: scale(0.98) translateZ(0);
+    }
+
+    /* Active section in center of viewport: crisp, sharp focus */
+    .page-section.section-focus {
+      opacity: 1;
+      filter: blur(0px);
+      transform: scale(1) translateZ(0);
+    }
+
+    /* Restore standard browser cursor across the site */
+    html, body {
+      cursor: auto;
+    }
+
+    a, button, [onclick], .project-card, .skill-pill,
+    .contact-row, .pill-nav a, .btn-primary, .btn-ghost, input[type="submit"] {
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 0: CASE STUDY MODAL (FULL ARCHITECTURE VIEW)
+══════════════════════════════════════════════ -->
+<div class="modal-overlay" id="caseModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box p-0">
+    <!-- Modal Navigation Top Bar -->
+    <div class="flex items-center justify-between px-6 py-4 border-b border-blue-500/20 bg-slate900/80 sticky top-0 z-20 backdrop-blur-md">
+      <button onclick="closeModal()" class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-400 hover:text-white transition-colors group">
+        <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 16 16" fill="none"><path d="M10 13L5 8l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Back to Portfolio</span>
+      </button>
+      <span class="section-label hidden sm:inline" id="modalSystemIndex">DELIVERED SYSTEM 01</span>
+      <button onclick="closeModal()" aria-label="Close Case Study" class="w-8 h-8 rounded-full border border-blue-500/30 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-500 transition-all">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="p-6 md:p-8 space-y-7">
+      <!-- Title & Overview Header -->
+      <div>
+        <div class="flex items-center gap-3 mb-2">
+          <span class="section-label" id="modalCategory">OUTBOUND & INBOUND VOICE AI</span>
+          <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-widest uppercase bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">Production Deployed</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-white uppercase tracking-tight" id="modalTitle">AI Voice Calling Agent</h2>
+        <p class="text-slate-300 text-sm md:text-base leading-relaxed mt-3" id="modalOverview"></p>
+      </div>
+
+      <!-- Tech Stack Badges -->
+      <div>
+        <span class="section-label block mb-3">Engine & Tech Stack</span>
+        <div class="flex flex-wrap gap-2" id="modalStack"></div>
+      </div>
+
+      <div class="h-divider"></div>
+
+      <!-- The Problem / Bottleneck -->
+      <div class="rounded-xl p-5 border border-red-500/25 bg-red-950/10">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-red-400 text-base">⚠️</span>
+          <span class="font-body text-xs font-bold uppercase tracking-widest text-red-400">The Problem & Business Bottleneck (Before Automation)</span>
+        </div>
+        <p class="text-slate-300 text-sm leading-relaxed" id="modalBottleneck"></p>
+      </div>
+
+      <!-- Step-by-Step Workflow Architecture -->
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-blue-400 text-base">⚡</span>
+          <span class="font-body text-xs font-bold uppercase tracking-widest text-blue-400">Step-by-Step Workflow Architecture</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Step 1: Trigger -->
+          <div class="phase-card">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-6 h-6 rounded-md bg-blue-600/20 border border-blue-500/40 text-blue-400 font-display font-bold text-xs flex items-center justify-center">01</span>
+              <span class="font-display text-sm font-bold text-white uppercase tracking-wider">Trigger & Ingestion</span>
+            </div>
+            <p class="text-slate-300 text-xs leading-relaxed" id="modalTrigger"></p>
+          </div>
+
+          <!-- Step 2: Logic & AI Processing -->
+          <div class="phase-card">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-6 h-6 rounded-md bg-cyan-600/20 border border-cyan-500/40 text-cyan-400 font-display font-bold text-xs flex items-center justify-center">02</span>
+              <span class="font-display text-sm font-bold text-white uppercase tracking-wider">Logic & AI Processing</span>
+            </div>
+            <p class="text-slate-300 text-xs leading-relaxed" id="modalLogic"></p>
+          </div>
+
+          <!-- Step 3: Final Output & Action -->
+          <div class="phase-card">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-6 h-6 rounded-md bg-emerald-600/20 border border-emerald-500/40 text-emerald-400 font-display font-bold text-xs flex items-center justify-center">03</span>
+              <span class="font-display text-sm font-bold text-white uppercase tracking-wider">Final Output & Action</span>
+            </div>
+            <p class="text-slate-300 text-xs leading-relaxed" id="modalOutput"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Architecture Visual Pipeline Nodes -->
+      <div>
+        <span class="section-label block mb-3">Live Node Sequence</span>
+        <div class="pipeline-wrap p-4 rounded-xl border border-blue-500/20 bg-slate900/60" id="modalPipeline"></div>
+      </div>
+
+      <!-- Measured Business Impact / ROI -->
+      <div class="rounded-xl p-5" style="background: linear-gradient(135deg, rgba(37,99,235,0.12) 0%, rgba(13,17,26,0.85) 100%); border: 1px solid rgba(59,130,246,0.3);">
+        <span class="section-label block mb-4">Measured Business Impact & ROI</span>
+        <div class="grid grid-cols-3 gap-4" id="modalImpact"></div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <button onclick="closeModal()" class="btn-ghost w-full sm:w-auto justify-center">
+          ← Back to Portfolio
+        </button>
+        <button id="modalDeployBtn" onclick="deployCurrentProject()" class="btn-primary w-full sm:w-auto justify-center">
+          Deploy This System for Your Business →
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 0B: AUDIT BOOKING MODAL
+══════════════════════════════════════════════ -->
+<div class="modal-overlay" id="auditModal">
+  <div class="modal-box p-0" style="max-width:520px">
+    <div class="flex items-center justify-between p-6 border-b border-blue-500/20">
+      <div>
+        <span class="section-label">FREE AUDIT BOOKING</span>
+        <h2 class="font-display text-2xl font-bold text-white mt-1 uppercase tracking-wide">Book Your Free Audit</h2>
+      </div>
+      <button onclick="closeAuditModal()" class="w-10 h-10 rounded-full border border-blue-500/30 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-500 transition-all">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <form id="auditForm" onsubmit="submitAudit(event)" class="p-6 space-y-4">
+      <!-- Status Feedback Banner (Success / Error) -->
+      <div id="auditStatusMsg" class="hidden"></div>
+
+      <div>
+        <label for="auditName" class="block text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Full Name <span class="text-blue-400">*</span></label>
+        <input type="text" class="form-input" placeholder="Your Name" id="auditName" required />
+      </div>
+      <div>
+        <label for="auditEmail" class="block text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Work Email <span class="text-blue-400">*</span></label>
+        <input type="email" class="form-input" placeholder="you@company.com" id="auditEmail" required />
+      </div>
+      <div>
+        <label for="auditCompany" class="block text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Company / Website <span class="text-slate-500 text-[10px] font-normal normal-case tracking-normal">(Optional)</span></label>
+        <input type="text" class="form-input" placeholder="yourcompany.com" id="auditCompany" />
+      </div>
+      <div>
+        <label for="auditBottleneck" class="block text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Workflow Bottleneck / System Deployment</label>
+        <textarea class="form-input" placeholder="Describe the manual process you want automated..." id="auditBottleneck" rows="3"></textarea>
+      </div>
+      <button type="submit" id="auditSubmitBtn" class="btn-primary w-full justify-center">
+        <span id="auditSubmitBtnText">Submit Audit Request →</span>
+      </button>
+      <p class="text-center text-xs text-slate-500">Response within 24hrs · 100% confidential</p>
+    </form>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">✓ Copied to clipboard!</div>
+
+<!-- ══════════════════════════════════════════════
+     HERO SECTION
+══════════════════════════════════════════════ -->
+<section class="hero-section page-section" id="home">
+
+  <!-- Watermark -->
+  <div class="hero-watermark" aria-hidden="true">
+    <span>AUTOMATE</span>
+  </div>
+
+  <!-- Video / Portrait -->
+  <div class="hero-video-wrap" aria-hidden="true">
+    <video
+      src="assets/hero-bg.mp4"
+      autoplay
+      loop
+      muted
+      playsinline
+      poster="assets/portrait.png"
+      id="heroVideo"
+      style="display:block;"
+    ></video>
+    <img
+      src="assets/portrait.png"
+      alt="Sawaiz Fani"
+      id="heroFallback"
+      style="display:none; width:clamp(260px,42vw,640px); height:100%; object-fit:cover; object-position:top center; mask-image:radial-gradient(ellipse 55% 80% at 50% 40%,black 55%,transparent 100%),linear-gradient(to top,transparent 0%,black 35%); -webkit-mask-image:radial-gradient(ellipse 55% 80% at 50% 40%,black 55%,transparent 100%),linear-gradient(to top,transparent 0%,black 35%);"
+    />
+  </div>
+
+  <!-- Vignettes -->
+  <div class="hero-vignette"></div>
+  <div class="hero-side-vignette-left"></div>
+  <div class="hero-side-vignette-right"></div>
+
+  <!-- Content layer -->
+  <div class="hero-content">
+
+    <!-- Micro Header -->
+    <div class="micro-header px-6 md:px-10 py-3 flex items-center justify-between gap-4 flex-wrap" style="z-index:10; position:relative;">
+      <div class="flex items-center gap-2">
+        <span class="text-blue-500" style="font-size:12px; letter-spacing:0.1em; font-weight:700; text-transform:uppercase; font-family:'Plus Jakarta Sans',sans-serif;">AI Automation Architect&nbsp;•&nbsp;Founder @ Hurivez</span>
+      </div>
+      <div class="flex items-center gap-4 flex-wrap">
+        <div class="flex items-center gap-2">
+          <div class="pulse-dot"></div>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(226,232,240,0.7);">Available for B2B Projects</span>
+        </div>
+        <nav class="pill-nav hidden md:flex" id="pillNav">
+          <a href="#systems">Delivered Systems</a>
+          <a href="#bento">Expertise</a>
+          <a href="#bento">Services</a>
+          <a href="#footer">Contact</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Main Hero Body -->
+    <div class="flex-1 flex items-end pb-20 md:pb-28 px-6 md:px-10">
+      <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-8 items-end">
+
+        <!-- LEFT: Identity Block -->
+        <div class="md:col-span-1 space-y-5" id="heroLeft">
+          <div>
+            <span class="font-script text-blue-400 text-2xl">Hello, I'm</span>
+            <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white uppercase tracking-tight leading-none mt-1">SAWAIZ<br/>FANI</h1>
+          </div>
+          <div>
+            <p class="font-display text-sm md:text-base font-medium tracking-widest text-blue-400 uppercase">AI Automation & Workflow Architect</p>
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed" style="max-width:340px;">
+            I engineer autonomous n8n workflows, AI Voice Calling Agents, and WhatsApp CRM pipelines that eliminate manual busywork and scale B2B operations.
+          </p>
+          <div class="flex items-center gap-2">
+            <span class="text-cyan-400 text-sm">🌐</span>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(226,232,240,0.6);">Serving Global B2B Clients</span>
+          </div>
+          <a href="#footer" class="btn-primary" style="display:inline-flex; align-items:center; text-decoration:none;">Contact Me →</a>
+        </div>
+
+        <!-- CENTER: spacer on desktop to let the video breathe -->
+        <div class="hidden md:block"></div>
+
+        <!-- RIGHT: Stats Column -->
+        <div class="md:col-span-1 space-y-4" id="heroRight">
+          <!-- Glass floating badge -->
+          <div class="glass-badge inline-flex items-center gap-3 px-4 py-3 mb-2">
+            <span class="text-blue-400 text-lg">✦</span>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; font-weight:600; color:rgba(226,232,240,0.8);">Turning manual workflows into autonomous systems.</span>
+          </div>
+
+          <!-- Stat cards -->
+          <div class="space-y-3">
+            <div class="glass-badge px-5 py-4 flex items-center gap-4">
+              <span class="stat-value text-4xl">15+</span>
+              <div>
+                <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:9.5px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(226,232,240,0.5);">Automated Workflows</p>
+              </div>
+            </div>
+            <div class="glass-badge px-5 py-4 flex items-center gap-4">
+              <span class="stat-value text-4xl">&lt;5s</span>
+              <div>
+                <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:9.5px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(226,232,240,0.5);">Speed-to-Lead Response</p>
+              </div>
+            </div>
+            <div class="glass-badge px-5 py-4 flex items-center gap-4">
+              <span class="stat-value text-4xl">80%</span>
+              <div>
+                <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:9.5px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(226,232,240,0.5);">Manual Work Reduced</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 2: DELIVERED SYSTEMS (CONTINUOUS MARQUEE)
+══════════════════════════════════════════════ -->
+<section id="systems" class="page-section py-20 px-6 md:px-10 overflow-hidden" style="border-top: 1px solid var(--grid-line);">
+  <div class="flex items-end justify-between gap-6 mb-10 reveal">
+    <div>
+      <span class="section-label block mb-2">Production-Ready AI & Automation Systems</span>
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-white uppercase tracking-tight">Delivered Systems</h2>
+    </div>
+    <div class="flex items-center gap-3 flex-shrink-0">
+      <div class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/30 bg-blue-950/40 text-blue-400 text-xs font-semibold tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+        <span class="hidden sm:inline">AUTONOMOUS STREAM • HOVER TO PAUSE</span>
+        <span class="sm:hidden">HOVER TO PAUSE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Infinite Marquee Track Wrapper -->
+  <div class="marquee-container" id="systemsMarquee">
+    <div class="marquee-track">
+
+      <!-- Primary Group (Cards 01 - 05) -->
+      <div class="marquee-group">
+
+        <!-- Card 01: AI Voice Calling Agent -->
+        <div class="project-card" style="width:340px; min-width:340px;" onclick="openModal(0)">
+          <div class="n8n-canvas h-48 flex items-center justify-center">
+            <svg width="100%" height="180" viewBox="0 0 340 180" fill="none">
+              <defs>
+                <pattern id="n8nGrid1_a" width="16" height="16" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="0.9" fill="rgba(59, 130, 246, 0.16)" />
+                </pattern>
+              </defs>
+              <rect width="340" height="180" fill="url(#n8nGrid1_a)" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-base-path" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-pulse-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-base-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-pulse-path" style="animation-delay: 0.85s;" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-base-path" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-pulse-path" style="animation-delay: 1.7s;" />
+              <circle cx="88" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="235" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="240" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="98" cy="128" r="3" fill="#38BDF8" />
+              <g>
+                <rect x="14" y="32" width="74" height="40" rx="6" class="n8n-node-rect" />
+                <text x="24" y="46" font-size="9" fill="#38BDF8">⚡</text>
+                <text x="36" y="47" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Webhook</text>
+                <text x="20" y="62" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Lead Trigger</text>
+              </g>
+              <g>
+                <rect x="155" y="32" width="80" height="40" rx="6" class="n8n-node-rect n8n-node-pulse" />
+                <text x="164" y="46" font-size="9" fill="#38BDF8">🎙️</text>
+                <text x="176" y="47" fill="#FFFFFF" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Vapi Agent</text>
+                <text x="162" y="62" fill="#38BDF8" font-size="7.5" font-family="'Inter', sans-serif">&lt;500ms Audio</text>
+              </g>
+              <g>
+                <rect x="155" y="108" width="85" height="40" rx="6" class="n8n-node-rect" />
+                <text x="164" y="122" font-size="9" fill="#38BDF8">🧠</text>
+                <text x="176" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Groq LLM</text>
+                <text x="162" y="138" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Tool Calling</text>
+              </g>
+              <g>
+                <rect x="14" y="108" width="84" height="40" rx="6" class="n8n-node-rect" />
+                <text x="22" y="122" font-size="9" fill="#38BDF8">📅</text>
+                <text x="34" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">GHL Booking</text>
+                <text x="22" y="138" fill="#10B981" font-size="7.5" font-family="'Inter', sans-serif">Instant Calendar</text>
+              </g>
+            </svg>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-display text-4xl font-bold text-blue-500/30 leading-none">01</span>
+              <span class="px-2 py-0.5 rounded text-[9.5px] font-bold tracking-widest uppercase bg-blue-500/10 border border-blue-500/25 text-blue-400">PRODUCTION</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white uppercase tracking-wide mb-1">AI Voice Calling Agent</h3>
+            <p class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-5" style="font-family:'Plus Jakarta Sans',sans-serif;">Outbound & Inbound Voice AI</p>
+            <div class="flex items-center justify-between pt-3 border-t border-blue-500/15">
+              <span class="text-xs text-slate-400">Sub-500ms Response</span>
+              <span class="btn-view-arch">View Architecture →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 02: WhatsApp & Meta Ads Engine -->
+        <div class="project-card" style="width:340px; min-width:340px;" onclick="openModal(1)">
+          <div class="n8n-canvas h-48 flex items-center justify-center">
+            <svg width="100%" height="180" viewBox="0 0 340 180" fill="none">
+              <defs>
+                <pattern id="n8nGrid2_a" width="16" height="16" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="0.9" fill="rgba(59, 130, 246, 0.16)" />
+                </pattern>
+              </defs>
+              <rect width="340" height="180" fill="url(#n8nGrid2_a)" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-base-path" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-pulse-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-base-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-pulse-path" style="animation-delay: 0.9s;" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-base-path" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-pulse-path" style="animation-delay: 1.75s;" />
+              <circle cx="88" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="235" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="240" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="98" cy="128" r="3" fill="#38BDF8" />
+              <g>
+                <rect x="14" y="32" width="74" height="40" rx="6" class="n8n-node-rect" />
+                <text x="24" y="46" font-size="9" fill="#38BDF8">🎯</text>
+                <text x="36" y="47" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Meta Ads</text>
+                <text x="20" y="62" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Instant Form</text>
+              </g>
+              <g>
+                <rect x="155" y="32" width="80" height="40" rx="6" class="n8n-node-rect n8n-node-pulse" />
+                <text x="164" y="46" font-size="9" fill="#38BDF8">⚡</text>
+                <text x="176" y="47" fill="#FFFFFF" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">n8n Engine</text>
+                <text x="162" y="62" fill="#10B981" font-size="7.5" font-family="'Inter', sans-serif">&lt;3s Lead Ingest</text>
+              </g>
+              <g>
+                <rect x="155" y="108" width="85" height="40" rx="6" class="n8n-node-rect" />
+                <text x="164" y="122" font-size="9" fill="#38BDF8">💬</text>
+                <text x="176" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">WA Cloud</text>
+                <text x="162" y="138" fill="#38BDF8" font-size="7.5" font-family="'Inter', sans-serif">AI Dynamic Chat</text>
+              </g>
+              <g>
+                <rect x="14" y="108" width="84" height="40" rx="6" class="n8n-node-rect" />
+                <text x="22" y="122" font-size="9" fill="#38BDF8">🗄️</text>
+                <text x="34" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">GHL / CRM</text>
+                <text x="22" y="138" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Auto Stage Sync</text>
+              </g>
+            </svg>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-display text-4xl font-bold text-blue-500/30 leading-none">02</span>
+              <span class="px-2 py-0.5 rounded text-[9.5px] font-bold tracking-widest uppercase bg-blue-500/10 border border-blue-500/25 text-blue-400">PRODUCTION</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white uppercase tracking-wide mb-1">WhatsApp & Meta Ads Engine</h3>
+            <p class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-5" style="font-family:'Plus Jakarta Sans',sans-serif;">Speed-to-Lead CRM Automation</p>
+            <div class="flex items-center justify-between pt-3 border-t border-blue-500/15">
+              <span class="text-xs text-slate-400">&lt;3s Lead Dispatch</span>
+              <span class="btn-view-arch">View Architecture →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 03: AI SEO Audit & Reporting -->
+        <div class="project-card" style="width:340px; min-width:340px;" onclick="openModal(2)">
+          <div class="n8n-canvas h-48 flex items-center justify-center">
+            <svg width="100%" height="180" viewBox="0 0 340 180" fill="none">
+              <defs>
+                <pattern id="n8nGrid3_a" width="16" height="16" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="0.9" fill="rgba(59, 130, 246, 0.16)" />
+                </pattern>
+              </defs>
+              <rect width="340" height="180" fill="url(#n8nGrid3_a)" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-base-path" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-pulse-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-base-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-pulse-path" style="animation-delay: 0.9s;" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-base-path" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-pulse-path" style="animation-delay: 1.75s;" />
+              <circle cx="88" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="235" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="240" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="98" cy="128" r="3" fill="#38BDF8" />
+              <g>
+                <rect x="14" y="32" width="74" height="40" rx="6" class="n8n-node-rect" />
+                <text x="24" y="46" font-size="9" fill="#38BDF8">⏱️</text>
+                <text x="36" y="47" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Cron Timer</text>
+                <text x="20" y="62" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Weekly Schedule</text>
+              </g>
+              <g>
+                <rect x="155" y="32" width="80" height="40" rx="6" class="n8n-node-rect" />
+                <text x="164" y="46" font-size="9" fill="#38BDF8">📊</text>
+                <text x="176" y="47" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">GSC & GA4</text>
+                <text x="162" y="62" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Metrics Fetch</text>
+              </g>
+              <g>
+                <rect x="155" y="108" width="85" height="40" rx="6" class="n8n-node-rect n8n-node-pulse" />
+                <text x="164" y="122" font-size="9" fill="#38BDF8">🧠</text>
+                <text x="176" y="123" fill="#FFFFFF" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Groq LLM</text>
+                <text x="162" y="138" fill="#38BDF8" font-size="7.5" font-family="'Inter', sans-serif">Anomaly Insights</text>
+              </g>
+              <g>
+                <rect x="14" y="108" width="84" height="40" rx="6" class="n8n-node-rect" />
+                <text x="22" y="122" font-size="9" fill="#38BDF8">📑</text>
+                <text x="34" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Notion Docs</text>
+                <text x="22" y="138" fill="#10B981" font-size="7.5" font-family="'Inter', sans-serif">Executive Report</text>
+              </g>
+            </svg>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-display text-4xl font-bold text-blue-500/30 leading-none">03</span>
+              <span class="px-2 py-0.5 rounded text-[9.5px] font-bold tracking-widest uppercase bg-blue-500/10 border border-blue-500/25 text-blue-400">PRODUCTION</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white uppercase tracking-wide mb-1">AI SEO Audit & Reporting</h3>
+            <p class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-5" style="font-family:'Plus Jakarta Sans',sans-serif;">Automated GSC/GA4 Analytics</p>
+            <div class="flex items-center justify-between pt-3 border-t border-blue-500/15">
+              <span class="text-xs text-slate-400">14h → 15m Automation</span>
+              <span class="btn-view-arch">View Architecture →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 04: RAG Knowledge Assistant -->
+        <div class="project-card" style="width:340px; min-width:340px;" onclick="openModal(3)">
+          <div class="n8n-canvas h-48 flex items-center justify-center">
+            <svg width="100%" height="180" viewBox="0 0 340 180" fill="none">
+              <defs>
+                <pattern id="n8nGrid4_a" width="16" height="16" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="0.9" fill="rgba(59, 130, 246, 0.16)" />
+                </pattern>
+              </defs>
+              <rect width="340" height="180" fill="url(#n8nGrid4_a)" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-base-path" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-pulse-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-base-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-pulse-path" style="animation-delay: 0.9s;" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-base-path" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-pulse-path" style="animation-delay: 1.75s;" />
+              <circle cx="88" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="235" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="240" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="98" cy="128" r="3" fill="#38BDF8" />
+              <g>
+                <rect x="14" y="32" width="74" height="40" rx="6" class="n8n-node-rect" />
+                <text x="24" y="46" font-size="9" fill="#38BDF8">💬</text>
+                <text x="36" y="47" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">User Query</text>
+                <text x="20" y="62" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Web / Slack</text>
+              </g>
+              <g>
+                <rect x="155" y="32" width="80" height="40" rx="6" class="n8n-node-rect n8n-node-pulse" />
+                <text x="164" y="46" font-size="9" fill="#38BDF8">⚡</text>
+                <text x="176" y="47" fill="#FFFFFF" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Supabase</text>
+                <text x="162" y="62" fill="#38BDF8" font-size="7.5" font-family="'Inter', sans-serif">pgvector Match</text>
+              </g>
+              <g>
+                <rect x="155" y="108" width="85" height="40" rx="6" class="n8n-node-rect" />
+                <text x="164" y="122" font-size="9" fill="#38BDF8">🧠</text>
+                <text x="176" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Groq RAG</text>
+                <text x="162" y="138" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Context Synthesis</text>
+              </g>
+              <g>
+                <rect x="14" y="108" width="84" height="40" rx="6" class="n8n-node-rect" />
+                <text x="22" y="122" font-size="9" fill="#38BDF8">✅</text>
+                <text x="34" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Verified Citations</text>
+                <text x="22" y="138" fill="#10B981" font-size="7.5" font-family="'Inter', sans-serif">&lt;1.5s Stream</text>
+              </g>
+            </svg>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-display text-4xl font-bold text-blue-500/30 leading-none">04</span>
+              <span class="px-2 py-0.5 rounded text-[9.5px] font-bold tracking-widest uppercase bg-blue-500/10 border border-blue-500/25 text-blue-400">PRODUCTION</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white uppercase tracking-wide mb-1">RAG Knowledge Assistant</h3>
+            <p class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-5" style="font-family:'Plus Jakarta Sans',sans-serif;">Custom Vector AI Chatbot</p>
+            <div class="flex items-center justify-between pt-3 border-t border-blue-500/15">
+              <span class="text-xs text-slate-400">90% Ticket Deflection</span>
+              <span class="btn-view-arch">View Architecture →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 05: Multi-Platform Content Engine -->
+        <div class="project-card" style="width:340px; min-width:340px;" onclick="openModal(4)">
+          <div class="n8n-canvas h-48 flex items-center justify-center">
+            <svg width="100%" height="180" viewBox="0 0 340 180" fill="none">
+              <defs>
+                <pattern id="n8nGrid5_a" width="16" height="16" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="0.9" fill="rgba(59, 130, 246, 0.16)" />
+                </pattern>
+              </defs>
+              <rect width="340" height="180" fill="url(#n8nGrid5_a)" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-base-path" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-pulse-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-base-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-pulse-path" style="animation-delay: 0.9s;" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-base-path" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-pulse-path" style="animation-delay: 1.75s;" />
+              <circle cx="88" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="235" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="240" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="98" cy="128" r="3" fill="#38BDF8" />
+              <g>
+                <rect x="14" y="32" width="74" height="40" rx="6" class="n8n-node-rect" />
+                <text x="24" y="46" font-size="9" fill="#38BDF8">🎙️</text>
+                <text x="36" y="47" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Voice / RSS</text>
+                <text x="20" y="62" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Idea Ingestion</text>
+              </g>
+              <g>
+                <rect x="155" y="32" width="80" height="40" rx="6" class="n8n-node-rect n8n-node-pulse" />
+                <text x="164" y="46" font-size="9" fill="#38BDF8">🤖</text>
+                <text x="176" y="47" fill="#FFFFFF" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">GPT-4 Engine</text>
+                <text x="162" y="62" fill="#38BDF8" font-size="7.5" font-family="'Inter', sans-serif">Channel Adapter</text>
+              </g>
+              <g>
+                <rect x="155" y="108" width="85" height="40" rx="6" class="n8n-node-rect" />
+                <text x="164" y="122" font-size="9" fill="#38BDF8">📋</text>
+                <text x="176" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Notion Kanban</text>
+                <text x="162" y="138" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">1-Click Approval</text>
+              </g>
+              <g>
+                <rect x="14" y="108" width="84" height="40" rx="6" class="n8n-node-rect" />
+                <text x="22" y="122" font-size="9" fill="#38BDF8">🚀</text>
+                <text x="34" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Social APIs</text>
+                <text x="22" y="138" fill="#10B981" font-size="7.5" font-family="'Inter', sans-serif">Auto Publishing</text>
+              </g>
+            </svg>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-display text-4xl font-bold text-blue-500/30 leading-none">05</span>
+              <span class="px-2 py-0.5 rounded text-[9.5px] font-bold tracking-widest uppercase bg-blue-500/10 border border-blue-500/25 text-blue-400">PRODUCTION</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white uppercase tracking-wide mb-1">Multi-Platform Content Engine</h3>
+            <p class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-5" style="font-family:'Plus Jakarta Sans',sans-serif;">Autonomous Social Publishing</p>
+            <div class="flex items-center justify-between pt-3 border-t border-blue-500/15">
+              <span class="text-xs text-slate-400">5× Organic Reach</span>
+              <span class="btn-view-arch">View Architecture →</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.marquee-group (Primary) -->
+
+      <!-- Duplicate Group for Seamless Infinite Loop -->
+      <div class="marquee-group" aria-hidden="true">
+
+        <!-- Card 01 Duplicate -->
+        <div class="project-card" style="width:340px; min-width:340px;" onclick="openModal(0)">
+          <div class="n8n-canvas h-48 flex items-center justify-center">
+            <svg width="100%" height="180" viewBox="0 0 340 180" fill="none">
+              <defs>
+                <pattern id="n8nGrid1_b" width="16" height="16" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="0.9" fill="rgba(59, 130, 246, 0.16)" />
+                </pattern>
+              </defs>
+              <rect width="340" height="180" fill="url(#n8nGrid1_b)" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-base-path" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-pulse-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-base-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-pulse-path" style="animation-delay: 0.85s;" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-base-path" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-pulse-path" style="animation-delay: 1.7s;" />
+              <circle cx="88" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="235" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="240" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="98" cy="128" r="3" fill="#38BDF8" />
+              <g>
+                <rect x="14" y="32" width="74" height="40" rx="6" class="n8n-node-rect" />
+                <text x="24" y="46" font-size="9" fill="#38BDF8">⚡</text>
+                <text x="36" y="47" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Webhook</text>
+                <text x="20" y="62" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Lead Trigger</text>
+              </g>
+              <g>
+                <rect x="155" y="32" width="80" height="40" rx="6" class="n8n-node-rect n8n-node-pulse" />
+                <text x="164" y="46" font-size="9" fill="#38BDF8">🎙️</text>
+                <text x="176" y="47" fill="#FFFFFF" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Vapi Agent</text>
+                <text x="162" y="62" fill="#38BDF8" font-size="7.5" font-family="'Inter', sans-serif">&lt;500ms Audio</text>
+              </g>
+              <g>
+                <rect x="155" y="108" width="85" height="40" rx="6" class="n8n-node-rect" />
+                <text x="164" y="122" font-size="9" fill="#38BDF8">🧠</text>
+                <text x="176" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Groq LLM</text>
+                <text x="162" y="138" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Tool Calling</text>
+              </g>
+              <g>
+                <rect x="14" y="108" width="84" height="40" rx="6" class="n8n-node-rect" />
+                <text x="22" y="122" font-size="9" fill="#38BDF8">📅</text>
+                <text x="34" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">GHL Booking</text>
+                <text x="22" y="138" fill="#10B981" font-size="7.5" font-family="'Inter', sans-serif">Instant Calendar</text>
+              </g>
+            </svg>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-display text-4xl font-bold text-blue-500/30 leading-none">01</span>
+              <span class="px-2 py-0.5 rounded text-[9.5px] font-bold tracking-widest uppercase bg-blue-500/10 border border-blue-500/25 text-blue-400">PRODUCTION</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white uppercase tracking-wide mb-1">AI Voice Calling Agent</h3>
+            <p class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-5" style="font-family:'Plus Jakarta Sans',sans-serif;">Outbound & Inbound Voice AI</p>
+            <div class="flex items-center justify-between pt-3 border-t border-blue-500/15">
+              <span class="text-xs text-slate-400">Sub-500ms Response</span>
+              <span class="btn-view-arch">View Architecture →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 02 Duplicate -->
+        <div class="project-card" style="width:340px; min-width:340px;" onclick="openModal(1)">
+          <div class="n8n-canvas h-48 flex items-center justify-center">
+            <svg width="100%" height="180" viewBox="0 0 340 180" fill="none">
+              <defs>
+                <pattern id="n8nGrid2_b" width="16" height="16" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="0.9" fill="rgba(59, 130, 246, 0.16)" />
+                </pattern>
+              </defs>
+              <rect width="340" height="180" fill="url(#n8nGrid2_b)" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-base-path" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-pulse-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-base-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-pulse-path" style="animation-delay: 0.9s;" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-base-path" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-pulse-path" style="animation-delay: 1.75s;" />
+              <circle cx="88" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="235" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="240" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="98" cy="128" r="3" fill="#38BDF8" />
+              <g>
+                <rect x="14" y="32" width="74" height="40" rx="6" class="n8n-node-rect" />
+                <text x="24" y="46" font-size="9" fill="#38BDF8">🎯</text>
+                <text x="36" y="47" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Meta Ads</text>
+                <text x="20" y="62" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Instant Form</text>
+              </g>
+              <g>
+                <rect x="155" y="32" width="80" height="40" rx="6" class="n8n-node-rect n8n-node-pulse" />
+                <text x="164" y="46" font-size="9" fill="#38BDF8">⚡</text>
+                <text x="176" y="47" fill="#FFFFFF" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">n8n Engine</text>
+                <text x="162" y="62" fill="#10B981" font-size="7.5" font-family="'Inter', sans-serif">&lt;3s Lead Ingest</text>
+              </g>
+              <g>
+                <rect x="155" y="108" width="85" height="40" rx="6" class="n8n-node-rect" />
+                <text x="164" y="122" font-size="9" fill="#38BDF8">💬</text>
+                <text x="176" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">WA Cloud</text>
+                <text x="162" y="138" fill="#38BDF8" font-size="7.5" font-family="'Inter', sans-serif">AI Dynamic Chat</text>
+              </g>
+              <g>
+                <rect x="14" y="108" width="84" height="40" rx="6" class="n8n-node-rect" />
+                <text x="22" y="122" font-size="9" fill="#38BDF8">🗄️</text>
+                <text x="34" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">GHL / CRM</text>
+                <text x="22" y="138" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Auto Stage Sync</text>
+              </g>
+            </svg>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-display text-4xl font-bold text-blue-500/30 leading-none">02</span>
+              <span class="px-2 py-0.5 rounded text-[9.5px] font-bold tracking-widest uppercase bg-blue-500/10 border border-blue-500/25 text-blue-400">PRODUCTION</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white uppercase tracking-wide mb-1">WhatsApp & Meta Ads Engine</h3>
+            <p class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-5" style="font-family:'Plus Jakarta Sans',sans-serif;">Speed-to-Lead CRM Automation</p>
+            <div class="flex items-center justify-between pt-3 border-t border-blue-500/15">
+              <span class="text-xs text-slate-400">&lt;3s Lead Dispatch</span>
+              <span class="btn-view-arch">View Architecture →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 03 Duplicate -->
+        <div class="project-card" style="width:340px; min-width:340px;" onclick="openModal(2)">
+          <div class="n8n-canvas h-48 flex items-center justify-center">
+            <svg width="100%" height="180" viewBox="0 0 340 180" fill="none">
+              <defs>
+                <pattern id="n8nGrid3_b" width="16" height="16" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="0.9" fill="rgba(59, 130, 246, 0.16)" />
+                </pattern>
+              </defs>
+              <rect width="340" height="180" fill="url(#n8nGrid3_b)" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-base-path" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-pulse-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-base-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-pulse-path" style="animation-delay: 0.9s;" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-base-path" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-pulse-path" style="animation-delay: 1.75s;" />
+              <circle cx="88" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="235" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="240" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="98" cy="128" r="3" fill="#38BDF8" />
+              <g>
+                <rect x="14" y="32" width="74" height="40" rx="6" class="n8n-node-rect" />
+                <text x="24" y="46" font-size="9" fill="#38BDF8">⏱️</text>
+                <text x="36" y="47" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Cron Timer</text>
+                <text x="20" y="62" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Weekly Schedule</text>
+              </g>
+              <g>
+                <rect x="155" y="32" width="80" height="40" rx="6" class="n8n-node-rect" />
+                <text x="164" y="46" font-size="9" fill="#38BDF8">📊</text>
+                <text x="176" y="47" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">GSC & GA4</text>
+                <text x="162" y="62" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Metrics Fetch</text>
+              </g>
+              <g>
+                <rect x="155" y="108" width="85" height="40" rx="6" class="n8n-node-rect n8n-node-pulse" />
+                <text x="164" y="122" font-size="9" fill="#38BDF8">🧠</text>
+                <text x="176" y="123" fill="#FFFFFF" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Groq LLM</text>
+                <text x="162" y="138" fill="#38BDF8" font-size="7.5" font-family="'Inter', sans-serif">Anomaly Insights</text>
+              </g>
+              <g>
+                <rect x="14" y="108" width="84" height="40" rx="6" class="n8n-node-rect" />
+                <text x="22" y="122" font-size="9" fill="#38BDF8">📑</text>
+                <text x="34" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Notion Docs</text>
+                <text x="22" y="138" fill="#10B981" font-size="7.5" font-family="'Inter', sans-serif">Executive Report</text>
+              </g>
+            </svg>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-display text-4xl font-bold text-blue-500/30 leading-none">03</span>
+              <span class="px-2 py-0.5 rounded text-[9.5px] font-bold tracking-widest uppercase bg-blue-500/10 border border-blue-500/25 text-blue-400">PRODUCTION</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white uppercase tracking-wide mb-1">AI SEO Audit & Reporting</h3>
+            <p class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-5" style="font-family:'Plus Jakarta Sans',sans-serif;">Automated GSC/GA4 Analytics</p>
+            <div class="flex items-center justify-between pt-3 border-t border-blue-500/15">
+              <span class="text-xs text-slate-400">14h → 15m Automation</span>
+              <span class="btn-view-arch">View Architecture →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 04 Duplicate -->
+        <div class="project-card" style="width:340px; min-width:340px;" onclick="openModal(3)">
+          <div class="n8n-canvas h-48 flex items-center justify-center">
+            <svg width="100%" height="180" viewBox="0 0 340 180" fill="none">
+              <defs>
+                <pattern id="n8nGrid4_b" width="16" height="16" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="0.9" fill="rgba(59, 130, 246, 0.16)" />
+                </pattern>
+              </defs>
+              <rect width="340" height="180" fill="url(#n8nGrid4_b)" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-base-path" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-pulse-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-base-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-pulse-path" style="animation-delay: 0.9s;" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-base-path" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-pulse-path" style="animation-delay: 1.75s;" />
+              <circle cx="88" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="235" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="240" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="98" cy="128" r="3" fill="#38BDF8" />
+              <g>
+                <rect x="14" y="32" width="74" height="40" rx="6" class="n8n-node-rect" />
+                <text x="24" y="46" font-size="9" fill="#38BDF8">💬</text>
+                <text x="36" y="47" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">User Query</text>
+                <text x="20" y="62" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Web / Slack</text>
+              </g>
+              <g>
+                <rect x="155" y="32" width="80" height="40" rx="6" class="n8n-node-rect n8n-node-pulse" />
+                <text x="164" y="46" font-size="9" fill="#38BDF8">⚡</text>
+                <text x="176" y="47" fill="#FFFFFF" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Supabase</text>
+                <text x="162" y="62" fill="#38BDF8" font-size="7.5" font-family="'Inter', sans-serif">pgvector Match</text>
+              </g>
+              <g>
+                <rect x="155" y="108" width="85" height="40" rx="6" class="n8n-node-rect" />
+                <text x="164" y="122" font-size="9" fill="#38BDF8">🧠</text>
+                <text x="176" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Groq RAG</text>
+                <text x="162" y="138" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Context Synthesis</text>
+              </g>
+              <g>
+                <rect x="14" y="108" width="84" height="40" rx="6" class="n8n-node-rect" />
+                <text x="22" y="122" font-size="9" fill="#38BDF8">✅</text>
+                <text x="34" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Verified Citations</text>
+                <text x="22" y="138" fill="#10B981" font-size="7.5" font-family="'Inter', sans-serif">&lt;1.5s Stream</text>
+              </g>
+            </svg>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-display text-4xl font-bold text-blue-500/30 leading-none">04</span>
+              <span class="px-2 py-0.5 rounded text-[9.5px] font-bold tracking-widest uppercase bg-blue-500/10 border border-blue-500/25 text-blue-400">PRODUCTION</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white uppercase tracking-wide mb-1">RAG Knowledge Assistant</h3>
+            <p class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-5" style="font-family:'Plus Jakarta Sans',sans-serif;">Custom Vector AI Chatbot</p>
+            <div class="flex items-center justify-between pt-3 border-t border-blue-500/15">
+              <span class="text-xs text-slate-400">90% Ticket Deflection</span>
+              <span class="btn-view-arch">View Architecture →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 05 Duplicate -->
+        <div class="project-card" style="width:340px; min-width:340px;" onclick="openModal(4)">
+          <div class="n8n-canvas h-48 flex items-center justify-center">
+            <svg width="100%" height="180" viewBox="0 0 340 180" fill="none">
+              <defs>
+                <pattern id="n8nGrid5_b" width="16" height="16" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="0.9" fill="rgba(59, 130, 246, 0.16)" />
+                </pattern>
+              </defs>
+              <rect width="340" height="180" fill="url(#n8nGrid5_b)" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-base-path" />
+              <path d="M 88,52 C 120,52 130,52 155,52" class="flow-pulse-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-base-path" />
+              <path d="M 235,52 C 280,52 280,128 240,128" class="flow-pulse-path" style="animation-delay: 0.9s;" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-base-path" />
+              <path d="M 155,128 C 125,128 125,128 98,128" class="flow-pulse-path" style="animation-delay: 1.75s;" />
+              <circle cx="88" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="235" cy="52" r="3" fill="#38BDF8" />
+              <circle cx="240" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="155" cy="128" r="3" fill="#38BDF8" />
+              <circle cx="98" cy="128" r="3" fill="#38BDF8" />
+              <g>
+                <rect x="14" y="32" width="74" height="40" rx="6" class="n8n-node-rect" />
+                <text x="24" y="46" font-size="9" fill="#38BDF8">🎙️</text>
+                <text x="36" y="47" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Voice / RSS</text>
+                <text x="20" y="62" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">Idea Ingestion</text>
+              </g>
+              <g>
+                <rect x="155" y="32" width="80" height="40" rx="6" class="n8n-node-rect n8n-node-pulse" />
+                <text x="164" y="46" font-size="9" fill="#38BDF8">🤖</text>
+                <text x="176" y="47" fill="#FFFFFF" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">GPT-4 Engine</text>
+                <text x="162" y="62" fill="#38BDF8" font-size="7.5" font-family="'Inter', sans-serif">Channel Adapter</text>
+              </g>
+              <g>
+                <rect x="155" y="108" width="85" height="40" rx="6" class="n8n-node-rect" />
+                <text x="164" y="122" font-size="9" fill="#38BDF8">📋</text>
+                <text x="176" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Notion Kanban</text>
+                <text x="162" y="138" fill="#64748B" font-size="7.5" font-family="'Inter', sans-serif">1-Click Approval</text>
+              </g>
+              <g>
+                <rect x="14" y="108" width="84" height="40" rx="6" class="n8n-node-rect" />
+                <text x="22" y="122" font-size="9" fill="#38BDF8">🚀</text>
+                <text x="34" y="123" fill="#E2E8F0" font-size="8.5" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Social APIs</text>
+                <text x="22" y="138" fill="#10B981" font-size="7.5" font-family="'Inter', sans-serif">Auto Publishing</text>
+              </g>
+            </svg>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-display text-4xl font-bold text-blue-500/30 leading-none">05</span>
+              <span class="px-2 py-0.5 rounded text-[9.5px] font-bold tracking-widest uppercase bg-blue-500/10 border border-blue-500/25 text-blue-400">PRODUCTION</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white uppercase tracking-wide mb-1">Multi-Platform Content Engine</h3>
+            <p class="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-5" style="font-family:'Plus Jakarta Sans',sans-serif;">Autonomous Social Publishing</p>
+            <div class="flex items-center justify-between pt-3 border-t border-blue-500/15">
+              <span class="text-xs text-slate-400">5× Organic Reach</span>
+              <span class="btn-view-arch">View Architecture →</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.marquee-group (Duplicate) -->
+
+    </div><!-- /.marquee-track -->
+  </div><!-- /.marquee-container -->
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 3: 3-COLUMN BENTO GRID
+══════════════════════════════════════════════ -->
+<section id="bento" class="page-section py-20" style="border-top: 1px solid var(--grid-line);">
+  <div class="px-6 md:px-10 mb-10 reveal">
+    <span class="section-label block mb-2">About & Expertise</span>
+    <h2 class="font-display text-4xl md:text-5xl font-bold text-white uppercase tracking-tight">The Architect Behind The Systems</h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3" style="border-top: 1px solid var(--grid-line);">
+
+    <!-- COLUMN 1: Education & Stack -->
+    <div class="p-8 md:p-10 reveal" style="border-right: 1px solid var(--grid-line);">
+      <span class="section-label block mb-6">Education & Technical Stack</span>
+
+      <!-- Education Timeline -->
+      <div class="space-y-6 mb-10">
+        <div class="edu-item">
+          <p class="font-body text-sm font-700 text-white mb-1" style="font-weight:700;">BS in Computer Science</p>
+          <p class="text-blue-400 text-xs font-semibold uppercase tracking-wide" style="font-family:'Plus Jakarta Sans',sans-serif;">COMSATS University Islamabad</p>
+          <p class="text-slate-500 text-xs mt-1" style="font-family:'Plus Jakarta Sans',sans-serif;">2026 – Present</p>
+        </div>
+        <div class="edu-item">
+          <p class="font-body text-sm font-700 text-white mb-1" style="font-weight:700;">AI Automation & Agentic Workflows</p>
+          <p class="text-blue-400 text-xs font-semibold uppercase tracking-wide" style="font-family:'Plus Jakarta Sans',sans-serif;">AI Automation (A-Z) Specialization</p>
+          <p class="text-slate-500 text-xs mt-1" style="font-family:'Plus Jakarta Sans',sans-serif;">2026</p>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <span class="section-label block mb-4">Technical Skills</span>
+      <div class="flex flex-wrap gap-2">
+        <span class="skill-pill">n8n</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">Java (OOP)</span>
+        <span class="skill-pill">REST APIs</span>
+        <span class="skill-pill">Webhooks</span>
+        <span class="skill-pill">Groq LLM</span>
+        <span class="skill-pill">OpenAI</span>
+        <span class="skill-pill">Vapi Voice AI</span>
+        <span class="skill-pill">Retell AI</span>
+        <span class="skill-pill">GoHighLevel</span>
+        <span class="skill-pill">WhatsApp Cloud API</span>
+        <span class="skill-pill">Evolution API</span>
+        <span class="skill-pill">PostgreSQL</span>
+        <span class="skill-pill">NocoDB</span>
+        <span class="skill-pill">Supabase (pgvector)</span>
+        <span class="skill-pill">SEO Automation</span>
+      </div>
+    </div>
+
+    <!-- COLUMN 2: Services Timeline -->
+    <div class="p-8 md:p-10 reveal" style="border-right: 1px solid var(--grid-line);">
+      <span class="section-label block mb-6">Core Services & Delivery Process</span>
+
+      <div class="space-y-0">
+
+        <!-- Service 01 -->
+        <div class="relative flex gap-4 pb-8">
+          <div class="flex flex-col items-center">
+            <div class="timeline-node">
+              <span class="font-display text-xs font-bold text-blue-400">01</span>
+            </div>
+            <div class="timeline-connector"></div>
+          </div>
+          <div class="pt-1 pb-4">
+            <h4 class="font-display text-base font-bold text-white uppercase mb-1">Workflow & Process Automation</h4>
+            <p class="text-slate-400 text-xs leading-relaxed" style="font-family:'Plus Jakarta Sans',sans-serif;">Custom n8n pipelines connecting APIs, databases, and LLMs to eliminate repetitive operations.</p>
+          </div>
+        </div>
+
+        <!-- Service 02 -->
+        <div class="relative flex gap-4 pb-8">
+          <div class="flex flex-col items-center">
+            <div class="timeline-node">
+              <span class="font-display text-xs font-bold text-blue-400">02</span>
+            </div>
+            <div class="timeline-connector"></div>
+          </div>
+          <div class="pt-1 pb-4">
+            <h4 class="font-display text-base font-bold text-white uppercase mb-1">AI Voice Calling Agents</h4>
+            <p class="text-slate-400 text-xs leading-relaxed" style="font-family:'Plus Jakarta Sans',sans-serif;">24/7 inbound/outbound voice agents (Vapi, Retell, Twilio) for lead qualification and calendar booking.</p>
+          </div>
+        </div>
+
+        <!-- Service 03 -->
+        <div class="relative flex gap-4 pb-8">
+          <div class="flex flex-col items-center">
+            <div class="timeline-node">
+              <span class="font-display text-xs font-bold text-blue-400">03</span>
+            </div>
+            <div class="timeline-connector"></div>
+          </div>
+          <div class="pt-1 pb-4">
+            <h4 class="font-display text-base font-bold text-white uppercase mb-1">WhatsApp & CRM Lead Pipelines</h4>
+            <p class="text-slate-400 text-xs leading-relaxed" style="font-family:'Plus Jakarta Sans',sans-serif;">Instant &lt;5s Meta Ads lead capture into GoHighLevel / NocoDB with automated WhatsApp follow-ups.</p>
+          </div>
+        </div>
+
+        <!-- Service 04 -->
+        <div class="relative flex gap-4 pb-8">
+          <div class="flex flex-col items-center">
+            <div class="timeline-node">
+              <span class="font-display text-xs font-bold text-blue-400">04</span>
+            </div>
+            <div class="timeline-connector"></div>
+          </div>
+          <div class="pt-1 pb-4">
+            <h4 class="font-display text-base font-bold text-white uppercase mb-1">Custom RAG AI Chatbots</h4>
+            <p class="text-slate-400 text-xs leading-relaxed" style="font-family:'Plus Jakarta Sans',sans-serif;">Context-aware AI assistants trained on company SOPs, PDFs, and knowledge bases via Supabase.</p>
+          </div>
+        </div>
+
+        <!-- Service 05 -->
+        <div class="relative flex gap-4">
+          <div class="flex flex-col items-center">
+            <div class="timeline-node">
+              <span class="font-display text-xs font-bold text-blue-400">05</span>
+            </div>
+          </div>
+          <div class="pt-1">
+            <h4 class="font-display text-base font-bold text-white uppercase mb-1">Automated SEO & Reporting</h4>
+            <p class="text-slate-400 text-xs leading-relaxed" style="font-family:'Plus Jakarta Sans',sans-serif;">Automated GSC & GA4 data aggregation into AI-analyzed monthly Notion reports.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COLUMN 3: Philosophy Card -->
+    <div class="p-8 md:p-10 reveal flex flex-col justify-between">
+      <span class="section-label block mb-6">Founder Philosophy</span>
+
+      <div class="philosophy-card p-8 flex-1 flex flex-col justify-between">
+        <!-- Big Quote Mark -->
+        <div>
+          <div class="font-display text-7xl font-bold text-blue-500/40 leading-none mb-3">"</div>
+          <blockquote class="font-display text-2xl md:text-3xl lg:text-[32px] font-bold text-white uppercase tracking-tight leading-tight">
+            You focus on the vision. <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-cyan-400">I’ll automate the rest.</span>
+          </blockquote>
+          <p class="text-slate-400 text-xs font-semibold tracking-wider mt-4 uppercase flex items-center gap-2" style="font-family:'Plus Jakarta Sans',sans-serif;">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(56,189,248,0.8)]"></span>
+            Autonomous B2B Systems Philosophy
+          </p>
+        </div>
+
+        <div class="mt-8">
+          <div class="h-divider mb-6" style="border-color: rgba(59,130,246,0.2);"></div>
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="font-script text-3xl text-blue-300">Sawaiz Fani</p>
+              <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(226,232,240,0.4); margin-top:4px;">Founder, Hurivez</p>
+            </div>
+            <div class="glass-badge px-4 py-2">
+              <span style="font-family:'Plus Jakarta Sans',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--cyan400);">✦ Let's Automate Your Growth.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini Hurivez branding card -->
+      <div class="mt-6 rounded-xl p-5 flex items-center gap-4" style="background: rgba(13,17,26,0.6); border: 1px solid var(--grid-line);">
+        <div class="w-10 h-10 rounded-lg bg-blue-600/20 border border-blue-500/30 flex items-center justify-center flex-shrink-0">
+          <span class="text-blue-400 font-display font-bold text-sm">H</span>
+        </div>
+        <div>
+          <p class="text-white font-semibold text-sm" style="font-family:'Plus Jakarta Sans',sans-serif;">Hurivez</p>
+          <a href="https://hurivez.tech" target="_blank" rel="noopener" class="text-blue-400 text-xs hover:text-blue-300 transition-colors" style="font-family:'Plus Jakarta Sans',sans-serif;">hurivez.tech ↗</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 4: FOOTER / LET'S WORK TOGETHER
+══════════════════════════════════════════════ -->
+<footer id="footer" class="page-section footer-section py-20 px-6 md:px-12 max-w-7xl mx-auto flex flex-col justify-between relative">
+  <div id="contact" style="position:absolute; top:-30px; left:0; width:1px; height:1px; pointer-events:none;"></div>
+
+  <div class="glow-line mb-14"></div>
+
+  <!-- Header: Let's Work Together & Contact Me -->
+  <div class="reveal mb-12">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="pulse-dot"></span>
+      <span class="section-label">CONTACT ME • GET IN TOUCH</span>
+    </div>
+    <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-white uppercase tracking-tight leading-none mb-4">
+      Let's Work Together
+    </h2>
+    <p class="text-slate-400 text-sm md:text-base leading-relaxed max-w-2xl" style="font-family:'Plus Jakarta Sans',sans-serif;">
+      Currently accepting select B2B automation &amp; AI agent builds. Reach out directly through email or WhatsApp to map out your highest-ROI autonomous workflows.
+    </p>
+  </div>
+
+  <!-- Clean Contact Grid: Only 2 Direct Action Channels -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16 relative z-10">
+
+    <!-- Channel 1: Business Email -->
+    <div class="contact-channel-card reveal">
+      <div>
+        <div class="flex items-center justify-between mb-6">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-xl text-blue-400">
+            ✉️
+          </div>
+          <span class="px-2.5 py-1 rounded text-[10px] font-bold tracking-widest uppercase bg-blue-500/10 border border-blue-500/25 text-blue-400" style="font-family:'Plus Jakarta Sans',sans-serif;">
+            DIRECT EMAIL
+          </span>
+        </div>
+
+        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold mb-1.5" style="font-family:'Plus Jakarta Sans',sans-serif;">Business Email</p>
+        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-wide mb-3 select-all">
+          sawaiz@hurivez.tech
+        </h3>
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-8" style="font-family:'Plus Jakarta Sans',sans-serif;">
+          Send project blueprints, custom workflow requirements, or architecture proposals. Direct inbox response within 24 hours.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3 pt-6 border-t border-blue-500/15 relative z-20">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sawaiz@hurivez.tech" target="_blank" rel="noopener noreferrer" class="btn-primary contact-action-btn" style="position:relative; z-index:20; cursor:pointer; border-radius:999px; padding:11px 26px; box-shadow:0 0 20px rgba(37,99,235,0.4); text-decoration:none;">
+          Email Me ↗
+        </a>
+        <button id="copyAddressBtn" onclick="copyEmailToClipboard(this)" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold text-slate-300 bg-slate-800/90 hover:bg-slate-700/90 border border-blue-500/20 hover:border-blue-500/40 transition-all uppercase tracking-wider contact-action-btn" style="position:relative; z-index:20; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif;">
+          <svg class="w-3.5 h-3.5 text-blue-400 copy-icon" viewBox="0 0 16 16" fill="none"><rect x="4" y="1" width="10" height="13" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="4" width="10" height="13" rx="1.5" fill="#0D111A" stroke="currentColor" stroke-width="1.3"/></svg>
+          <span class="copy-text">Copy Address</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Channel 2: WhatsApp Direct -->
+    <div class="contact-channel-card reveal">
+      <div>
+        <div class="flex items-center justify-between mb-6">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-xl text-emerald-400">
+            💬
+          </div>
+          <span class="px-2.5 py-1 rounded text-[10px] font-bold tracking-widest uppercase bg-emerald-500/10 border border-emerald-500/25 text-emerald-400" style="font-family:'Plus Jakarta Sans',sans-serif;">
+            FAST RESPONSE
+          </span>
+        </div>
+
+        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold mb-1.5" style="font-family:'Plus Jakarta Sans',sans-serif;">WhatsApp Chat &amp; Voice</p>
+        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-wide mb-3 select-all">
+          +92 303 8129396
+        </h3>
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-8" style="font-family:'Plus Jakarta Sans',sans-serif;">
+          Write me &amp; we'll talk. Direct WhatsApp line for rapid scope reviews, architecture consultation, and quick project syncs.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3 pt-6 border-t border-blue-500/15 relative z-20">
+        <a href="https://wa.me/923038129396" target="_blank" rel="noopener noreferrer" class="btn-primary contact-action-btn" style="position:relative; z-index:20; cursor:pointer; border-radius:999px; padding:11px 26px; background:#059669; box-shadow:0 0 20px rgba(16,185,129,0.4); text-decoration:none;">
+          WhatsApp ↗
+        </a>
+        <a href="https://wa.me/923038129396" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/25 transition-all uppercase tracking-wider contact-action-btn" style="position:relative; z-index:20; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; text-decoration:none;">
+          Write Me &amp; We'll Talk ↗
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Copyright Bar -->
+  <div class="glow-line mb-6"></div>
+  <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+    <p class="text-slate-600 text-xs" style="font-family:'Plus Jakarta Sans',sans-serif;">© 2026 Sawaiz Fani — Hurivez (<a href="https://hurivez.tech" target="_blank" rel="noopener" class="text-blue-500 hover:text-blue-400 transition-colors">hurivez.tech</a>). All Rights Reserved.</p>
+    <div class="flex items-center gap-6">
+      <span class="text-slate-600 text-xs" style="font-family:'Plus Jakarta Sans',sans-serif; letter-spacing:0.1em; text-transform:uppercase;">Built with ✦ Automation</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════ -->
+<script>
+/* ─── Video Fallback ─── */
+(function(){
+  var v = document.getElementById('heroVideo');
+  var img = document.getElementById('heroFallback');
+  if(!v) return;
+  v.addEventListener('error', function(){
+    v.style.display = 'none';
+    img.style.display = 'block';
+  });
+  v.addEventListener('loadeddata', function(){
+    v.style.display = 'block';
+    img.style.display = 'none';
+  });
+})();
+
+/* ─── Case Study Data ─── */
+var currentProjectIdx = 0;
+
+var projects = [
+  {
+    indexLabel: 'DELIVERED SYSTEM 01 • PRODUCTION ARCHITECTURE',
+    title: 'AI Voice Calling Agent',
+    category: 'Outbound & Inbound Voice AI',
+    overview: 'An autonomous voice agent engineered for 24/7 inbound prospect handling and automated outbound lead qualification. Operating at sub-500ms voice inference latency, the agent carries natural conversational tone, conducts discovery using customized BANT logic, and schedules qualified meetings directly onto executive calendars.',
+    bottleneck: 'Sales development teams spent 6+ hours per day manually cold-calling leads with an average pickup rate under 14% and inconsistent pitch delivery. Inbound web leads waited an average of 4.5 hours for an initial callback, causing over 65% of hot prospects to cool off or select competing vendors.',
+    trigger: 'Triggered instantly by Twilio SIP trunk on incoming phone calls or via real-time Webhook when a high-intent B2B prospect completes a web demo request form.',
+    logic: 'Bidirectional streaming audio through Vapi AI connected to Groq (Llama-3) executing low-latency prompt chains. Uses dynamic tool calling to query calendar availability, qualify budget, and overcome specific objections in real time.',
+    output: 'Schedules confirmed meeting on Google Calendar / Cal.com, streams full structured call recording and transcript into GoHighLevel CRM, and sends instant SMS and email confirmations to the lead.',
+    pipeline: ['Webhook / SIP Ring', 'Vapi Voice Agent', 'Groq Llama-3 (Function Calling)', 'GoHighLevel CRM', 'Cal.com Sync', 'SMS Confirmation'],
+    stack: ['n8n Engine', 'Vapi AI', 'Retell AI', 'Twilio SIP', 'Groq (Llama-3)', 'GoHighLevel', 'Cal.com API', 'Webhooks'],
+    impact: [
+      { value: '<5s', label: 'Speed-to-Call' },
+      { value: '24/7', label: 'Availability' },
+      { value: '3.4×', label: 'Booked Calls' },
+    ]
+  },
+  {
+    indexLabel: 'DELIVERED SYSTEM 02 • PRODUCTION ARCHITECTURE',
+    title: 'WhatsApp & Meta Ads Engine',
+    category: 'Speed-to-Lead CRM Automation',
+    overview: 'A hyper-responsive speed-to-lead workflow that instantly captures Meta Instant Form submissions in under 3 seconds, sanitizes phone credentials, and triggers an intelligent conversational WhatsApp qualification dialogue with automated CRM pipeline synchronization.',
+    bottleneck: 'Meta Ad campaigns generated consistent volume, but sales reps manually exported CSV files hours after submission. Over 40% of leads failed to convert because the initial contact took place well outside the crucial 5-minute response window, while manual outreach lacked consistent follow-up cadence.',
+    trigger: 'Real-time Meta Graph API Webhook pushes newly submitted lead form payload immediately into the n8n execution environment.',
+    logic: 'n8n validates country phone formatting, executes deduplication queries against NocoDB / GoHighLevel, and launches an intelligent two-way WhatsApp qualifying sequence customized to the specific ad creative clicked.',
+    output: 'First personalized WhatsApp message delivered in under 3 seconds. Updates GoHighLevel contact stage with pipeline tags, routes qualified prospects to reps, and triggers instant Slack sales alerts.',
+    pipeline: ['Meta Ads Webhook', 'n8n Ingestion Engine', 'Evolution / WA Cloud API', 'Groq Qualification', 'GoHighLevel / NocoDB', 'Slack Alerts'],
+    stack: ['n8n Engine', 'Meta Graph API', 'WhatsApp Cloud API', 'Evolution API', 'GoHighLevel', 'NocoDB', 'Groq LLM', 'Webhooks'],
+    impact: [
+      { value: '<3s', label: 'Speed-to-Lead' },
+      { value: '80%', label: 'Less Busywork' },
+      { value: '2.8×', label: 'Lead Conversion' },
+    ]
+  },
+  {
+    indexLabel: 'DELIVERED SYSTEM 03 • PRODUCTION ARCHITECTURE',
+    title: 'AI SEO Audit & Reporting',
+    category: 'Automated GSC/GA4 Analytics',
+    overview: 'An autonomous SEO reporting pipeline that aggregates raw search performance data from Google Search Console and GA4, applies Groq LLMs to detect traffic anomalies and keyword cannibalization, and outputs interactive executive Notion reports delivered to stakeholders.',
+    bottleneck: 'SEO specialists spent 10–14 hours per client each month pulling metrics from disparate platforms into manual spreadsheets. Reports were delivered weeks late with generic takeaways, while critical ranking drops and keyword shifts went unnoticed for days.',
+    trigger: 'Scheduled n8n cron trigger running automatically on weekly and month-end cadences to ingest client domain performance data.',
+    logic: 'Extracts impressions, click-through rates, and GA4 session telemetry. Computes period-over-period deltas and feeds structured JSON metrics to Groq LLM with a specialized SEO diagnostic prompt that identifies winning/losing query clusters.',
+    output: 'Auto-populates a client-ready Notion dashboard complete with visual trend tables, strategic recommendations, and sends an automated PDF executive summary via email.',
+    pipeline: ['n8n Cron Scheduler', 'GSC & GA4 REST APIs', 'Delta Calculations', 'Groq LLM Diagnostic', 'Notion Client Page', 'Executive Email Digest'],
+    stack: ['n8n Engine', 'Google Search Console API', 'Google Analytics 4 API', 'Groq LLM', 'Notion API', 'Python', 'SendGrid'],
+    impact: [
+      { value: '95%', label: 'Hours Saved' },
+      { value: '100%', label: 'Automated Delivery' },
+      { value: '14h→15m', label: 'Report Cycle' },
+    ]
+  },
+  {
+    indexLabel: 'DELIVERED SYSTEM 04 • PRODUCTION ARCHITECTURE',
+    title: 'RAG Knowledge Assistant',
+    category: 'Custom Vector AI Chatbot',
+    overview: 'An enterprise Retrieval-Augmented Generation (RAG) assistant trained on internal standard operating procedures, documentation, and product catalogs. Enables website visitors and internal teams to obtain verified answers with exact source document citations.',
+    bottleneck: 'Support teams answered repetitive questions pulled from scattered Google Docs, Notion workspaces, and 90-page PDFs. Onboarding new support staff took 3 weeks of shadowing, while Tier-1 ticket queues remained bottlenecked with recurring inquiries.',
+    trigger: 'User submits an inquiry via embedded website chat interface or internal Slack/WhatsApp command channel.',
+    logic: 'Generates vector embeddings using OpenAI text-embedding-3-small, executes cosine similarity retrieval inside Supabase (pgvector), and feeds top contextual chunks into Groq/OpenAI with strict factual constraints.',
+    output: 'Streams accurate, cited answers with document references in under 1.5 seconds. Automatically creates an escalated ticket with context if the query confidence score is below threshold.',
+    pipeline: ['Chat / Slack Query', 'OpenAI Embeddings', 'Supabase (pgvector)', 'Context Synthesis', 'Groq / GPT-4 Reasoning', 'Streamed Response'],
+    stack: ['n8n Engine', 'Supabase (pgvector)', 'OpenAI Embeddings', 'Groq LLM', 'PostgreSQL', 'REST APIs', 'Webhooks'],
+    impact: [
+      { value: '<1.5s', label: 'Query Latency' },
+      { value: '90%', label: 'Deflected Tickets' },
+      { value: '60%', label: 'Support Cost Saved' },
+    ]
+  },
+  {
+    indexLabel: 'DELIVERED SYSTEM 05 • PRODUCTION ARCHITECTURE',
+    title: 'Multi-Platform Content Engine',
+    category: 'Autonomous Social Publishing',
+    overview: 'An autonomous multi-channel distribution workflow that converts raw audio notes, podcast snippets, or industry RSS feeds into high-performing LinkedIn carousels, X/Twitter threads, and newsletter drafts with 1-click human approval.',
+    bottleneck: 'Founders and marketing leads struggled to maintain consistent posting across multiple channels. Ideation, multi-format copywriting, and cross-platform formatting consumed 15+ hours weekly, resulting in irregular distribution and missed audience reach.',
+    trigger: 'New voice recording sent to a private Telegram bot, RSS feed update, or Notion row marked "Ready for Generation".',
+    logic: 'Transcribes audio via Whisper AI, then runs multi-prompt LLM chains through platform-specific style guides (LinkedIn narrative structure, punchy X hooks, and newsletter executive recaps). Generates visual carousel card briefs.',
+    output: 'Populates drafts in a dedicated Notion Kanban board for review. Upon clicking "Approve", n8n automatically schedules and publishes via official LinkedIn and Twitter/X APIs.',
+    pipeline: ['RSS / Audio Webhook', 'Whisper AI Transcribe', 'GPT-4 Platform Adapters', 'Notion Approval Board', 'LinkedIn API & X API', 'Multi-Network Publish'],
+    stack: ['n8n Engine', 'OpenAI GPT-4', 'Groq LLM', 'Whisper AI', 'LinkedIn Graph API', 'X / Twitter API', 'Notion API'],
+    impact: [
+      { value: '5×', label: 'Post Volume' },
+      { value: '15h', label: 'Hours Saved / Wk' },
+      { value: '1-Click', label: 'Approval Flow' },
+    ]
+  }
+];
+
+/* ─── Case Study Modal ─── */
+function openModal(idx){
+  currentProjectIdx = idx;
+  var p = projects[idx];
+  if(!p) return;
+
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalCategory').textContent = p.category;
+  document.getElementById('modalSystemIndex').textContent = p.indexLabel;
+  document.getElementById('modalOverview').textContent = p.overview;
+  document.getElementById('modalBottleneck').textContent = p.bottleneck;
+  document.getElementById('modalTrigger').textContent = p.trigger;
+  document.getElementById('modalLogic').textContent = p.logic;
+  document.getElementById('modalOutput').textContent = p.output;
+
+  // Pipeline
+  var pipeEl = document.getElementById('modalPipeline');
+  pipeEl.innerHTML = '';
+  p.pipeline.forEach(function(node, i){
+    var wrap = document.createElement('div');
+    wrap.className = 'pipeline-node';
+    var box = document.createElement('div');
+    box.className = 'pipeline-box';
+    box.textContent = node;
+    wrap.appendChild(box);
+    if(i < p.pipeline.length - 1){
+      var arr = document.createElement('span');
+      arr.className = 'pipeline-arrow';
+      arr.textContent = '→';
+      wrap.appendChild(arr);
+    }
+    pipeEl.appendChild(wrap);
+  });
+
+  // Stack
+  var stackEl = document.getElementById('modalStack');
+  stackEl.innerHTML = '';
+  p.stack.forEach(function(s){
+    var pill = document.createElement('span');
+    pill.className = 'skill-pill';
+    pill.textContent = s;
+    stackEl.appendChild(pill);
+  });
+
+  // Impact
+  var impactEl = document.getElementById('modalImpact');
+  impactEl.innerHTML = '';
+  p.impact.forEach(function(m){
+    var col = document.createElement('div');
+    col.className = 'text-center';
+    col.innerHTML = '<p class="stat-value text-3xl mb-1">'+m.value+'</p><p style="font-family:\'Plus Jakarta Sans\',sans-serif; font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(226,232,240,0.5);">'+m.label+'</p>';
+    impactEl.appendChild(col);
+  });
+
+  document.getElementById('caseModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  document.getElementById('caseModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function deployCurrentProject(){
+  var p = projects[currentProjectIdx];
+  closeModal();
+  openAuditModal();
+  var ta = document.getElementById('auditBottleneck');
+  if(ta && p){
+    ta.value = 'Interested in deploying the "' + p.title + '" system.\nOur current business bottleneck: ';
+    ta.focus();
+  }
+}
+
+/* ─── Audit Modal ─── */
+function openAuditModal(){
+  closeModal();
+  var statusMsg = document.getElementById('auditStatusMsg');
+  if(statusMsg){
+    statusMsg.className = 'hidden';
+    statusMsg.innerHTML = '';
+  }
+  var submitBtn = document.getElementById('auditSubmitBtn');
+  var submitBtnText = document.getElementById('auditSubmitBtnText');
+  if(submitBtn) submitBtn.disabled = false;
+  if(submitBtnText) submitBtnText.textContent = 'Submit Audit Request →';
+
+  document.getElementById('auditModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAuditModal(){
+  document.getElementById('auditModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+async function submitAudit(e){
+  if(e && e.preventDefault) e.preventDefault();
+
+  var nameInput = document.getElementById('auditName');
+  var emailInput = document.getElementById('auditEmail');
+  var companyInput = document.getElementById('auditCompany');
+  var bottleneckInput = document.getElementById('auditBottleneck');
+  var submitBtn = document.getElementById('auditSubmitBtn');
+  var submitBtnText = document.getElementById('auditSubmitBtnText');
+  var statusMsg = document.getElementById('auditStatusMsg');
+
+  var name = nameInput ? nameInput.value.trim() : '';
+  var email = emailInput ? emailInput.value.trim() : '';
+  var company = (companyInput && companyInput.value.trim()) ? companyInput.value.trim() : 'N/A';
+  var bottleneck = bottleneckInput ? bottleneckInput.value.trim() : '';
+
+  if(!name || !email){
+    if(statusMsg){
+      statusMsg.className = 'block';
+      statusMsg.innerHTML = '<div class="p-3 rounded-lg border border-red-500/30 bg-red-500/10 text-red-300 text-xs font-medium">Please provide your Full Name and Work Email.</div>';
+    }
+    showToast('Please fill in Name and Email ✦');
+    return;
+  }
+
+  // Disable button immediately and change text to prevent duplicate submissions
+  if(submitBtn) submitBtn.disabled = true;
+  if(submitBtnText) submitBtnText.innerHTML = '<span class="inline-flex items-center gap-2"><svg class="animate-spin -ml-1 mr-1 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>Submitting...</span>';
+  if(statusMsg){
+    statusMsg.className = 'hidden';
+    statusMsg.innerHTML = '';
+  }
+
+  var payload = {
+    name: name,
+    email: email,
+    company: company,
+    bottleneck: bottleneck
+  };
+
+  var webhookUrl = 'https://n8n-cyyr.srv2032813.hstgr.cloud/webhook/portfolio-audit-lead';
+
+  try {
+    var response = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if(response.ok){
+      // Reset form fields
+      if(nameInput) nameInput.value = '';
+      if(emailInput) emailInput.value = '';
+      if(companyInput) companyInput.value = '';
+      if(bottleneckInput) bottleneckInput.value = '';
+
+      // Re-enable button & restore label
+      if(submitBtn) submitBtn.disabled = false;
+      if(submitBtnText) submitBtnText.textContent = 'Submit Audit Request →';
+
+      // Display glowing green confirmation message inside the form card
+      if(statusMsg){
+        statusMsg.className = 'block';
+        statusMsg.innerHTML = [
+          '<div class="p-4 rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-emerald-300 text-xs md:text-sm leading-relaxed flex items-start gap-3 shadow-[0_0_24px_rgba(16,185,129,0.2)]">',
+          '  <span class="text-emerald-400 text-xl flex-shrink-0 leading-none mt-0.5">✓</span>',
+          '  <div>',
+          '    <p class="font-bold text-white text-xs uppercase tracking-wider mb-1">Request Received</p>',
+          '    <p class="text-slate-200 text-xs leading-relaxed">Request received! Check your inbox for confirmation — I\'ll review your workflow and get back to you within 24 hours.</p>',
+          '  </div>',
+          '</div>'
+        ].join('');
+      }
+
+      showToast('✓ Request received! Check your inbox for confirmation.');
+    } else {
+      throw new Error('Server returned HTTP ' + response.status);
+    }
+  } catch(err) {
+    console.error('Audit webhook error:', err);
+
+    // Re-enable submit button
+    if(submitBtn) submitBtn.disabled = false;
+    if(submitBtnText) submitBtnText.textContent = 'Submit Audit Request →';
+
+    // Show polite fallback message advising direct contact via Email or WhatsApp
+    if(statusMsg){
+      statusMsg.className = 'block';
+      statusMsg.innerHTML = [
+        '<div class="p-4 rounded-xl border border-amber-500/40 bg-amber-500/10 text-amber-300 text-xs leading-relaxed flex items-start gap-3 shadow-[0_0_20px_rgba(245,158,11,0.15)]">',
+        '  <span class="text-amber-400 text-lg flex-shrink-0 mt-0.5">⚠️</span>',
+        '  <div>',
+        '    <p class="font-bold text-white text-xs uppercase tracking-wider mb-1">Direct Connection Notice</p>',
+        '    <p class="text-slate-300 text-xs mb-2.5">Could not reach the automated webhook. Please reach out directly to <span class="text-white font-semibold">sawaiz@hurivez.tech</span> or message on WhatsApp:</p>',
+        '    <div class="flex flex-wrap items-center gap-2">',
+        '      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sawaiz@hurivez.tech" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/40 text-blue-300 text-[11px] font-semibold transition-colors">',
+        '        ✉️ Email Directly',
+        '      </a>',
+        '      <a href="https://wa.me/923038129396" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 text-[11px] font-semibold transition-colors">',
+        '        💬 WhatsApp (+92 303 8129396)',
+        '      </a>',
+        '    </div>',
+        '  </div>',
+        '</div>'
+      ].join('');
+    }
+
+    showToast('⚠️ Notice: You can also reach out via WhatsApp or Email');
+  }
+}
+
+/* ─── Close modals on overlay click ─── */
+document.getElementById('caseModal').addEventListener('click', function(e){
+  if(e.target === this) closeModal();
+});
+document.getElementById('auditModal').addEventListener('click', function(e){
+  if(e.target === this) closeAuditModal();
+});
+
+/* ─── ESC key ─── */
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){ closeModal(); closeAuditModal(); }
+});
+
+/* ─── Copy to Clipboard Functions ─── */
+function copyEmailToClipboard(btn){
+  var email = 'sawaiz@hurivez.tech';
+  var targetBtn = btn || document.getElementById('copyAddressBtn');
+  var textEl = targetBtn ? (targetBtn.querySelector('.copy-text') || targetBtn) : null;
+  var originalText = textEl ? textEl.textContent : 'Copy Address';
+
+  function onCopiedSuccess(){
+    if(textEl){
+      textEl.textContent = 'Copied! ✓';
+      textEl.classList.add('text-emerald-400');
+    }
+    if(targetBtn){
+      targetBtn.style.borderColor = 'rgba(16, 185, 129, 0.5)';
+      targetBtn.style.background = 'rgba(16, 185, 129, 0.15)';
+    }
+    showToast('✓ Email copied: ' + email);
+    setTimeout(function(){
+      if(textEl){
+        textEl.textContent = originalText;
+        textEl.classList.remove('text-emerald-400');
+      }
+      if(targetBtn){
+        targetBtn.style.borderColor = '';
+        targetBtn.style.background = '';
+      }
+    }, 2000);
+  }
+
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(email).then(function(){
+      onCopiedSuccess();
+    }).catch(function(){
+      fallbackCopyText(email);
+      onCopiedSuccess();
+    });
+  } else {
+    fallbackCopyText(email);
+    onCopiedSuccess();
+  }
+}
+
+function fallbackCopyText(text){
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.left = '-9999px';
+  ta.style.top = '0';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try {
+    document.execCommand('copy');
+  } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+function copyToClipboard(text, el){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){
+      showToast('✓ Copied: ' + text);
+    }).catch(function(){
+      fallbackCopyText(text);
+      showToast('✓ Copied: ' + text);
+    });
+  } else {
+    fallbackCopyText(text);
+    showToast('✓ Copied: ' + text);
+  }
+}
+
+function showToast(msg){
+  var t = document.getElementById('toast');
+  if(!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 3000);
+}
+
+// Bind explicit listener to copy button once ready
+document.addEventListener('DOMContentLoaded', function(){
+  var copyBtn = document.getElementById('copyAddressBtn');
+  if(copyBtn){
+    copyBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      copyEmailToClipboard(this);
+    });
+  }
+});
+
+/* ─── Scroll Reveal (IntersectionObserver) ─── */
+(function(){
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  var delay = 0;
+  document.querySelectorAll('.reveal').forEach(function(el){
+    el.style.transitionDelay = delay + 'ms';
+    delay += 80;
+    if(delay > 400) delay = 0;
+    observer.observe(el);
+  });
+})();
+
+/* ─── GSAP Hero Entrance ─── */
+(function(){
+  if(typeof gsap === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.fromTo('#heroLeft', { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 1.1, ease: 'power3.out', delay: 0.3 });
+  gsap.fromTo('#heroRight', { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 1.1, ease: 'power3.out', delay: 0.5 });
+  gsap.fromTo('.hero-watermark span', { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 1.4, ease: 'power2.out', delay: 0.1 });
+
+  /* Parallax watermark */
+  gsap.to('.hero-watermark span', {
+    y: 60,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.hero-section',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1.5
+    }
+  });
+})();
+
+/* ══════════════════════════════════════════════
+   ACTIVE SECTION FOCUS & EDGE BLUR (IntersectionObserver)
+══════════════════════════════════════════════ */
+(function(){
+  var sections = Array.from(document.querySelectorAll('.page-section'));
+  if(!sections.length) return;
+
+  var ratios = new Map();
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      ratios.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0);
+    });
+
+    // Determine the section with highest presence in viewport center
+    var maxRatio = 0;
+    var activeSec = null;
+
+    ratios.forEach(function(ratio, sec){
+      if(ratio > maxRatio){
+        maxRatio = ratio;
+        activeSec = sec;
+      }
+    });
+
+    if(!activeSec && sections.length){
+      activeSec = sections[0];
+    }
+
+    sections.forEach(function(sec){
+      if(sec === activeSec){
+        sec.classList.add('section-focus');
+        sec.classList.remove('section-blur');
+      } else {
+        sec.classList.add('section-blur');
+        sec.classList.remove('section-focus');
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '-12% 0px -12% 0px',
+    threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+  });
+
+  sections.forEach(function(sec, idx){
+    if(idx === 0){
+      sec.classList.add('section-focus');
+    } else {
+      sec.classList.add('section-blur');
+    }
+    observer.observe(sec);
+  });
+
+  /* Ensure footer is crisply focused when scrolled to the very bottom of the document */
+  window.addEventListener('scroll', function(){
+    if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 80)) {
+      sections.forEach(function(sec){
+        if(sec.id === 'footer'){
+          sec.classList.add('section-focus');
+          sec.classList.remove('section-blur');
+        } else {
+          sec.classList.add('section-blur');
+          sec.classList.remove('section-focus');
+        }
+      });
+    }
+  }, { passive: true });
+})();
+
+/* ─── Smooth Scroll for all internal hash anchors (Navbar, Hero CTA, Contact Me) ─── */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var href = a.getAttribute('href');
+    if(!href || href === '#') return;
+    var target = document.querySelector(href);
+    if(target){
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if(history.pushState) {
+        history.pushState(null, null, href);
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>

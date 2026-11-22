@@ -837,6 +837,344 @@
       cursor: pointer;
     }
 
+    /* ═══════════════════════════════════════════════════════════
+       MOBILE RESPONSIVE — Targeted fixes for ≤768px and ≤480px
+       Does NOT override desktop layout, colors, or animations
+    ═══════════════════════════════════════════════════════════ */
+
+    /* ── 1. BASE: prevent any horizontal overflow on all screens ── */
+    html { overflow-x: hidden; }
+    body { overflow-x: hidden; }
+    .page-section, section, footer { overflow-x: hidden; max-width: 100vw; }
+
+    @media (max-width: 768px) {
+
+      /* ── 2. HERO WATERMARK: scale down giant text ── */
+      .hero-watermark span {
+        font-size: clamp(48px, 22vw, 110px);
+      }
+
+      /* ── 3. HERO VIDEO: shrink to prevent overflow ── */
+      .hero-video-wrap video,
+      .hero-video-wrap img {
+        width: clamp(200px, 70vw, 380px) !important;
+      }
+
+      /* ── 4. HERO H1: responsive name size ── */
+      .hero-section h1 {
+        font-size: clamp(44px, 14vw, 72px) !important;
+      }
+
+      /* ── 5. HERO MICRO HEADER: allow wrap, reduce gap ── */
+      .micro-header {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .micro-header > div:first-child span {
+        font-size: 10px !important;
+        letter-spacing: 0.06em !important;
+      }
+
+      /* ── 6. HERO CONTENT GRID: single column, left-aligned, bottom padding ── */
+      .hero-content .grid.grid-cols-1.md\:grid-cols-3 {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+      }
+
+      /* ── 7. HERO STATS: stack below identity block; reduce sizes ── */
+      #heroRight {
+        display: none; /* hide heavy stat cards on mobile to keep hero clean */
+      }
+
+      /* ── 8. HERO CTA padding ── */
+      .hero-content .flex-1.flex.items-end {
+        padding-bottom: 72px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
+
+      /* ── 9. SECTION HEADINGS: scale down ── */
+      .font-display.text-4xl, .font-display.text-5xl {
+        font-size: clamp(28px, 9vw, 48px) !important;
+      }
+      .font-display.text-6xl {
+        font-size: clamp(32px, 10vw, 56px) !important;
+      }
+
+      /* ── 10. MARQUEE: smaller card width + touch-friendly ── */
+      .marquee-group {
+        gap: 16px !important;
+        animation-duration: 30s !important;
+      }
+      .marquee-track {
+        gap: 16px !important;
+      }
+      /* Reduce card width on mobile */
+      .project-card {
+        width: 290px !important;
+        min-width: 290px !important;
+      }
+      /* Touch scroll pause */
+      .marquee-container:active .marquee-group {
+        animation-play-state: paused;
+      }
+
+      /* ── 11. BENTO GRID: collapse to single column ── */
+      #bento .grid.grid-cols-1.md\:grid-cols-3 {
+        grid-template-columns: 1fr !important;
+        border-top: none !important;
+      }
+      /* Remove side borders that look weird in single column */
+      #bento .grid > div[style*="border-right"] {
+        border-right: none !important;
+        border-bottom: 1px solid var(--grid-line) !important;
+      }
+      /* Reduce bento column padding */
+      #bento .p-8, #bento .p-10, #bento .md\:p-10 {
+        padding: 24px 20px !important;
+      }
+
+      /* ── 12. PHILOSOPHY CARD: smaller blockquote ── */
+      .philosophy-card blockquote {
+        font-size: clamp(18px, 5.5vw, 28px) !important;
+      }
+      .philosophy-card {
+        padding: 24px !important;
+      }
+
+      /* ── 13. FOOTER / CONTACT: single column ── */
+      #footer .grid.grid-cols-1.md\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+      }
+      #footer {
+        padding: 48px 20px !important;
+        max-width: 100% !important;
+      }
+
+      /* Contact channel card: full width ── */
+      .contact-channel-card {
+        width: 100% !important;
+      }
+      .contact-channel-card .flex.flex-wrap.items-center.gap-3 {
+        flex-direction: column !important;
+        align-items: stretch !important;
+      }
+      .contact-channel-card a.btn-primary,
+      .contact-channel-card a.contact-action-btn,
+      .contact-channel-card button {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+      }
+
+      /* ── 14. CASE STUDY MODAL: full-width, internal scroll ── */
+      .modal-overlay {
+        padding: 10px 8px !important;
+        align-items: flex-end !important;
+      }
+      .modal-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: 88vh !important;
+        border-radius: 20px 20px 12px 12px !important;
+        margin: 0 !important;
+      }
+
+      /* ── 15. AUDIT MODAL: also fill width ── */
+      #auditModal .modal-box {
+        max-width: 100% !important;
+        width: 100% !important;
+        max-height: 88vh !important;
+        border-radius: 20px 20px 12px 12px !important;
+      }
+      #auditForm input,
+      #auditForm textarea {
+        font-size: 16px !important; /* prevents iOS zoom on focus */
+      }
+      #auditSubmitBtn {
+        padding: 14px 24px !important;
+        font-size: 14px !important;
+      }
+
+      /* ── 16. MODAL BOTTOM CTA ROW: stack buttons ── */
+      .modal-box .flex.flex-col.sm\:flex-row {
+        flex-direction: column !important;
+        gap: 10px !important;
+      }
+      .modal-box .btn-primary,
+      .modal-box .btn-ghost {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+
+      /* ── 17. MODAL IMPACT ROW: wrap cleanly ── */
+      .modal-box .impact-row,
+      .modal-box .flex.gap-6 {
+        flex-wrap: wrap !important;
+        gap: 12px !important;
+      }
+
+      /* ── 18. SECTION padding ── */
+      #systems, #bento {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-top: 56px !important;
+        padding-bottom: 56px !important;
+      }
+      #systems .flex.items-end.justify-between {
+        padding-left: 20px;
+        padding-right: 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      #systems h2 {
+        font-size: clamp(28px, 9vw, 48px) !important;
+      }
+
+      /* ── 19. SKILLS PILLS: smaller on mobile ── */
+      .skill-pill {
+        font-size: 10.5px !important;
+        padding: 4px 8px !important;
+      }
+
+      /* ── 20. GLASS BADGE: prevent overflow ── */
+      .glass-badge {
+        max-width: 100%;
+        flex-wrap: wrap;
+      }
+
+      /* ── 21. SECTION-BLUR: Disable scale blur on mobile to prevent overflow ── */
+      .page-section.section-blur {
+        opacity: 0.6 !important;
+        filter: blur(2px) !important;
+        transform: none !important;
+      }
+      .page-section.section-focus {
+        transform: none !important;
+      }
+
+      /* ── 22. PILL NAV: shown via mobile hamburger alternative or hidden (keep existing hidden md:flex) ── */
+      /* Keep pill-nav hidden on mobile, show a compact contact link in micro header instead */
+      .micro-header .pill-nav { display: none !important; }
+      /* Show simplified mobile nav row below micro-header */
+      .mobile-nav-row { display: flex !important; }
+    }
+
+    /* ── Extra small phones (≤480px) ── */
+    @media (max-width: 480px) {
+
+      .hero-watermark span {
+        font-size: clamp(38px, 22vw, 70px);
+      }
+      .hero-section h1 {
+        font-size: clamp(38px, 13vw, 60px) !important;
+      }
+      .hero-content .flex-1.flex.items-end {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        padding-bottom: 60px !important;
+      }
+      .project-card {
+        width: 265px !important;
+        min-width: 265px !important;
+      }
+      .contact-channel-card {
+        padding: 20px 16px !important;
+      }
+      .contact-channel-card h3 {
+        font-size: 1.3rem !important;
+      }
+      #auditModal .modal-box,
+      #caseModal .modal-box {
+        max-height: 92vh !important;
+      }
+      .modal-overlay {
+        padding: 6px !important;
+      }
+      .btn-primary, .btn-ghost {
+        font-size: 12px !important;
+        padding: 11px 18px !important;
+      }
+      #footer h2 {
+        font-size: clamp(28px, 11vw, 44px) !important;
+      }
+    }
+
+  </style>
+
+  <!-- Mobile bento/grid border overrides: inline styles need !important to override -->
+  <style>
+    @media (max-width: 768px) {
+      /* Bento grid: single column, bottom dividers instead of side borders */
+      #bento .grid > div[style*="border-right"] {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(59, 130, 246, 0.18) !important;
+      }
+      #bento .grid > div:last-child[style*="border-right"] {
+        border-bottom: none !important;
+      }
+      /* Bento grid top border on mobile: keep it */
+      #bento .grid[style*="border-top"] {
+        border-top: 1px solid rgba(59, 130, 246, 0.18) !important;
+      }
+      /* Bento column padding reduced */
+      #bento .grid > div {
+        padding: 24px 20px !important;
+      }
+      /* Philosophy card reduced padding */
+      #bento .philosophy-card {
+        padding: 20px !important;
+      }
+      /* Section header padding */
+      #bento > .px-6 {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
+      /* Marquee container mask: reduce on mobile to avoid card getting clipped */
+      .marquee-container {
+        mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%) !important;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%) !important;
+      }
+      /* Modal overlay: position at bottom on small screens for thumb access */
+      .modal-overlay {
+        align-items: flex-end !important;
+        padding: 0 !important;
+      }
+      .modal-box {
+        border-radius: 20px 20px 0 0 !important;
+        margin-bottom: 0 !important;
+      }
+      /* Case study impact grid: 2 cols on mobile */
+      .modal-box .grid.grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+      }
+      /* Pipeline wrap: scroll horizontally on mobile */
+      .pipeline-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* Further reduce bento column padding */
+      #bento .grid > div {
+        padding: 20px 16px !important;
+      }
+      /* Impact metrics: stack on very small screens */
+      .modal-box .grid.grid-cols-3 {
+        grid-template-columns: 1fr !important;
+      }
+      /* Skill pills: very small */
+      .skill-pill {
+        font-size: 10px !important;
+        padding: 3px 7px !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1048,6 +1386,14 @@
           <a href="#footer">Contact</a>
         </nav>
       </div>
+    </div>
+
+    <!-- Mobile Nav Row (compact, visible only on small screens) -->
+    <div class="mobile-nav-row" style="display:none; gap:6px; flex-wrap:wrap; padding:6px 16px 8px; position:relative; z-index:10; background:rgba(6,8,13,0.5); backdrop-filter:blur(8px);">
+      <a href="#systems" style="font-family:'Plus Jakarta Sans',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(226,232,240,0.7); padding:5px 10px; border:1px solid rgba(59,130,246,0.25); border-radius:999px; text-decoration:none; white-space:nowrap;">Systems</a>
+      <a href="#bento" style="font-family:'Plus Jakarta Sans',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(226,232,240,0.7); padding:5px 10px; border:1px solid rgba(59,130,246,0.25); border-radius:999px; text-decoration:none; white-space:nowrap;">Expertise</a>
+      <a href="#bento" style="font-family:'Plus Jakarta Sans',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(226,232,240,0.7); padding:5px 10px; border:1px solid rgba(59,130,246,0.25); border-radius:999px; text-decoration:none; white-space:nowrap;">Services</a>
+      <a href="#footer" style="font-family:'Plus Jakarta Sans',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(56,189,248,0.9); padding:5px 10px; border:1px solid rgba(56,189,248,0.4); border-radius:999px; text-decoration:none; white-space:nowrap; background:rgba(37,99,235,0.15);">Contact ↗</a>
     </div>
 
     <!-- Main Hero Body -->
